@@ -1,0 +1,22 @@
+.Contact{
+    display: flex;
+    margin: 0.5rem ;
+    padding: 1.1rem 3rem;
+    height: 77px;
+    justify-content: space-around;
+    align-items: center;
+   
+    overflow: hidden;
+    position: relative;
+    transition: opacity 500ms ease-in-out;
+    
+}
+.Contact-name{
+ /* position:absolute; */
+ display: inline-block;
+
+  }
+.Contact-phones{
+    position: relative;
+display: block;
+}

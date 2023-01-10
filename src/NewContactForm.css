@@ -1,0 +1,72 @@
+.newContact-input{
+  /* margin: 20px 0px; */
+direction: rtl;
+ height: 60px;
+}
+
+.MuiFormLabel-root{
+right: 0  ;
+
+}
+/* 
+input:invalid {
+ border: red;
+} */
+
+
+
+
+.form-head {
+    border-bottom: 1px solid white;
+    color: #6976d9;
+    font-family: sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 24px;
+    padding: 10px;
+    text-align: center;
+    background: lavender;
+  }
+
+form{
+  background: lavender;
+    border: 1px solid #dedede;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    margin: 0 auto;
+    max-width: 500px;
+    padding: 30px 50px;
+}
+/* input {
+    border: 1px solid #d9d9d9;
+    border-radius: 4px;
+    box-sizing: border-box;
+    padding: 10px;
+    width: 100%;
+    margin: 3rem 0rem;
+  }
+  */
+  /* label {
+    color: #3d3d3d;
+    display: block;
+    font-family: sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 5px;
+  } */
+
+  /* .NewContactForm{
+   
+ padding: 20px;
+  } */
+
+  .submitButton {
+    background-color: #818de4;
+    color: white;
+    font-family: sans-serif;
+    font-size: 14px;
+    margin-top: 2rem;
+    height: 3rem;
+    border-radius: 20px;
+  }
