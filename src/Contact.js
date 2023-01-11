@@ -1,7 +1,8 @@
 import { useState } from "react";
-import { ListItemSecondaryAction,ListItem, ListItemText,IconButton  } from "@material-ui/core"
-import DeleteIcon from '@mui/icons-material/Delete';
-import EditIcon from '@mui/icons-material/Edit';
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faTrash } from '@fortawesome/free-solid-svg-icons'
+import { faPencil } from "@fortawesome/free-solid-svg-icons";
 
 import DeleteDialog from "./DeleteDialog";
 import './Contact.css'
@@ -35,28 +36,39 @@ setEditDialog(true)
     
     return(
         <>
-<ListItem style={{backgroundColor:`#${color}`}} className="Contact">
-    <ListItemText className="Contact-name" primary={name}secondary={roll}></ListItemText>
-    <ListItemText className="Contact-phones" primary={phoneNumber} secondary={officePhone}></ListItemText>
-    <ListItemText className="Contact-email">{email}</ListItemText>
- 
-    <ListItemSecondaryAction>
-<IconButton>
-    {/* <DeleteIcon aria-label='Delete' onClick={()=>{
-        removeContact(id)
-    }}/> */}
-    <DeleteIcon onClick={handleDelete}/>
-    </IconButton>
-    <IconButton>
-    <EditIcon aria-label='Edit' onClick={handleEdit}/>
-    </IconButton>
-    </ListItemSecondaryAction>
-    </ListItem>
+
+        <li style={{backgroundColor:`#${color}`}} className="Contact" >
+<div className="contact-container">
+<div className="contact-text contact-text-names">
+    <span>{name}</span>
+    <p >{roll}</p>
+</div>
+<div className="contact-text contact-text-phones">
+<span>{phoneNumber}</span>
+    <p >{officePhone}</p>
+</div>
+<div className="contact-text contact-text-email">
+<span>{email}</span>
+    
+</div>
+</div>
+<div className="icons">
+<FontAwesomeIcon onClick={handleDelete} className="icon" icon={faTrash} />
+<FontAwesomeIcon onClick={handleEdit} className="icon" icon={faPencil} />
+</div>
+        </li>
+
+{isDeleteDialogOpen &&
 <DeleteDialog 
 open={isDeleteDialogOpen} 
 close={closeDeleteDialog} 
 removeContact={removeContact} 
 deleteId={id}/>
+
+}
+
+
+{isEditDialogOpen && 
 <EditContactForm 
 open= {isEditDialogOpen} 
 close={closeEditDialog}
@@ -69,6 +81,8 @@ phoneNumber={phoneNumber}
 email={email} 
 officePhone={officePhone}
 />
+}
+
         </>
     )
 }

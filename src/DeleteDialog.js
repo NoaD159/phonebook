@@ -1,10 +1,13 @@
 import { useState } from "react";
 
-import { Dialog } from "@mui/material";
-import { Avatar, DialogTitle, List, ListItem, ListItemAvatar, ListItemText } from "@material-ui/core";
-import { Close, Delete } from "@mui/icons-material";
+// import { Dialog } from "@mui/material";
+// import { Avatar, DialogTitle, List, ListItem, ListItemAvatar, ListItemText } from "@material-ui/core";
+// import { Close, Delete } from "@mui/icons-material";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faUndo, faTrash } from '@fortawesome/free-solid-svg-icons'
 
 import './DeleteDialog.css'
+
 
 function DeleteDialog({open, close, removeContact, deleteId}){
 
@@ -12,7 +15,47 @@ function DeleteDialog({open, close, removeContact, deleteId}){
     removeContact(deleteId)
   }
 
-    return( <Dialog open={open} onClose={close}>
+    return( 
+    <div className="dealog-container">
+<div className="dialog">
+<div className="dialog-paper">
+<div className="dialog-title">
+  <h2>למחוק איש קשר?</h2>
+</div>
+<ul className="dialog-list">
+<li className="list-item list-item-cancel" onClick={close}>
+  <div className="list-item-icon">
+    <FontAwesomeIcon icon={faUndo} className="deleteDealog-icon" />
+  </div>
+<div className="list-item-text-container">
+<span className="list-item-text">בטל</span>
+</div>
+</li>
+<li className="list-item list-item-delete" onClick={()=>{deleteContact(deleteId)}}>
+  <div className="list-item-icon">
+    <FontAwesomeIcon icon={faTrash} className="deleteDealog-icon" />
+  </div>
+<div className="list-item-text-container">
+<span className="list-item-text">מחק</span>
+</div>
+</li>
+</ul>
+</div>
+</div>
+
+    </div> 
+     )
+
+}
+
+export default DeleteDialog
+
+
+
+
+
+
+{/* <Dialog open={open} onClose={close}>
         <DialogTitle> למחוק איש קשר?</DialogTitle>
         <List>
             <ListItem button onClick={close} >
@@ -32,8 +75,4 @@ function DeleteDialog({open, close, removeContact, deleteId}){
                   <ListItemText primary='מחק' />
                 </ListItem>
         </List>
-     </Dialog>)
-
-}
-
-export default DeleteDialog
+     </Dialog> */}

@@ -13,10 +13,7 @@ input:invalid {
  border: red;
 } */
 
-
-
-
-.form-head {
+.make-new-contact-title {
     border-bottom: 1px solid white;
     color: #6976d9;
     font-family: sans-serif;
@@ -27,8 +24,7 @@ input:invalid {
     text-align: center;
     background: lavender;
   }
-
-form{
+.newContact-form{
   background: lavender;
     border: 1px solid #dedede;
     display: flex;
@@ -38,28 +34,69 @@ form{
     max-width: 500px;
     padding: 30px 50px;
 }
-/* input {
-    border: 1px solid #d9d9d9;
+
+
+
+
+
+input {
+    /* border: 1px solid #d9d9d9;
     border-radius: 4px;
     box-sizing: border-box;
     padding: 10px;
     width: 100%;
-    margin: 3rem 0rem;
+    margin: 3rem 0rem; */
+
+    font: inherit;
+    color: currentColor;
+    width: 100%;
+    border: solid 1px rgba(0, 0, 0, 0.3);
+    border-radius: 20px;
+    height: 1.1876em;
+    margin: 0;
+    display: block;
+    padding: 6px 0 7px;
+    min-width: 0;
+    background: none;
+    box-sizing: content-box;
+    animation-name: mui-auto-fill-cancel;
+    letter-spacing: inherit;
+    animation-duration: 10ms;
+    -webkit-tap-highlight-color: transparent;
+    margin-bottom: 1rem;
+    text-indent: 5%;
   }
-  */
-  /* label {
+ 
+  label {
     color: #3d3d3d;
     display: block;
     font-family: sans-serif;
     font-size: 14px;
     font-weight: 500;
     margin-bottom: 5px;
-  } */
+  }
 
-  /* .NewContactForm{
-   
- padding: 20px;
-  } */
+
+  .newContact-tag{
+    font: inherit;
+    color: currentColor;
+    width: 100%;
+    border: solid 1px rgba(0, 0, 0, 0.3);
+    border-radius: 20px;
+    height: 1.1876em;
+    margin: 0;
+    display: block;
+    padding: 6px 0 7px;
+    min-width: 0;
+    background: none;
+    box-sizing: content-box;
+    animation-name: mui-auto-fill-cancel;
+    letter-spacing: inherit;
+    animation-duration: 10ms;
+    -webkit-tap-highlight-color: transparent;
+    margin-top: 2rem;
+
+  }
 
   .submitButton {
     background-color: #818de4;
