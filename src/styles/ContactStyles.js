@@ -19,12 +19,16 @@ export default {
         display: "block",
  fontSize:"0.9rem"
     },
+    showEmailButton:{
+backgroundColor: "green",
+    },
     contactPhones:{
          position: "relative",
         
     },
 
 icon:{
-padding: "0"
+padding: "0",
+margin: "2px 3px",
 }
 }

@@ -26,4 +26,7 @@ export const initialContacts= [
     {id:uuid(), roll:'מדריכה', name: 'הילה חזן', tag:'matya',phoneNumber:'0543033616', email: 'hilamir@gmail.com', officePhone:"" },
     {id:uuid(), roll:'מדריכה', name: 'אתי זוהר', tag:'matya',phoneNumber:'', email: 'etizo25@gmail.com', officePhone:"" },
     {id:uuid(), roll:'אחראית כספים', name: 'סהר חיון', tag:'city',phoneNumber:'', email: 'saharh@Holon.muni.il', officePhone:"035027344" },
+    {id:uuid(), roll:'מנהלת גן אדמון', name: 'מיטל משאלי', tag:'kinder',phoneNumber:'0545902982', email: '88meital@walla.co.il', officePhone:"" },
+    {id:uuid(), roll:'עמיתה גן דרורים', name: "לילך דוידוביץ", tag:'kinder',phoneNumber:'0523590588', email: 'lilachdavidovich80@gmail.com ', officePhone:"" },
+    {id:uuid(), roll:'מנהלת מחלקת היסעים', name: 'שירלי שרף', tag:'city',phoneNumber:'0545590045', email: '', officePhone:"035027399" },
 ]
