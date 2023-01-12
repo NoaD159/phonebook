@@ -1,10 +1,11 @@
 import { useState } from "react"
 
 import { Dialog, DialogTitle, TextField, Select, MenuItem } from "@material-ui/core"
-import './NewContactForm.css'
 
+import { withStyles } from "@material-ui/styles"
+import styles from './styles/EditDialogStyles'
 
- function EditContactForm({open, close, editContact, name, id, tag, roll, phoneNumber, email, officePhone}) {
+ function EdidDialog({classes,open, close, editContact, name, id, tag, roll, phoneNumber, email, officePhone}) {
   const [contact, setContact]=useState({name, roll, id, officePhone, phoneNumber,email, tag})
 
   const handleChange=(e)=>{
@@ -21,69 +22,75 @@ close()
 
     return (
    <Dialog open={open} onClose={close} >
-    <DialogTitle>עריכת איש קשר</DialogTitle>
-    <form onSubmit={handleEditForm}>
+    <DialogTitle
+  disableTypography="true"
+    className={classes.editContactHead}>עריכת איש קשר</DialogTitle>
+    <form className={classes.EditContactForm} onSubmit={handleEditForm}>
     <TextField 
 fullWidth
 required
-className="newContact-input"
+className={classes.editContactInput}
 type='text' 
 id='name' 
 name='name' 
 label='שם'
+InputLabelProps={{ classes: { root: classes.editContactLabel } }}
 value={contact.name} 
 onChange={handleChange}
 />
 <TextField
 fullWidth
 required
-className="newContact-input"
+className={classes.editContactInput}
 type='text' 
 id='roll' 
 name='roll' 
 label='תפקיד'
+InputLabelProps={{ classes: { root: classes.editContactLabel } }}
 value={contact.roll} 
 onChange={handleChange}
 />
 <TextField
 fullWidth
-
-className="newContact-input"
+className={classes.editContactInput}
 type='text' 
 id='phone' 
 name='phoneNumber' 
 label='מספר טלפון'
+InputLabelProps={{ classes: { root: classes.editContactLabel } }}
 value={phoneNumber} 
 onChange={handleChange}
 />
 <TextField
 fullWidth
-className="newContact-input"
+className={classes.editContactInput}
 type='text' 
 id='officePhone' 
 name='officePhone' 
 label='טלפון במשרד'
+InputLabelProps={{ classes: { root: classes.editContactLabel } }}
 value={officePhone} 
 onChange={handleChange}
 />
 
 <TextField
 fullWidth
-className="newContact-input"
+className={classes.editContactInput}
 type='text' 
 id='email' 
 name='email' 
 label='כתובת מייל'
+InputLabelProps={{ classes: { root: classes.editContactLabel } }}
 value={email} 
 onChange={handleChange}
 />
 <Select 
 required
-className="newContact-input"
+className={classes.editContactInput}
 value={tag}
 name="tag"
 id="tag"
-labelId="tag-label"
+// labelId="tag-label"
 onChange={handleChange}>
 
 <MenuItem value="city">עירייה ומנהל החינוך</MenuItem>
@@ -91,7 +98,7 @@ onChange={handleChange}>
 <MenuItem value="kinder">גננות</MenuItem>
 <MenuItem value="other">אחר</MenuItem>
 </Select>
-<button type="submit" className="submitButton">
+<button type="submit" className={classes.submitButton}>
     אישור
 </button>
 
@@ -100,4 +107,4 @@ onChange={handleChange}>
     
   )
 }
-export default EditContactForm
+export default withStyles(styles) (EdidDialog);

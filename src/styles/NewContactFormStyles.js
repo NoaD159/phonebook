@@ -1,0 +1,51 @@
+export default {
+  NewContactForm:{
+    background: "lavender",
+    border:" 1px solid #dedede",
+    display:" flex",
+    flexDirection: "column",
+    justifyContent: "space-around",
+    margin: "0 auto",
+    maxWidth: "500px",
+    padding:" 30px 50px",
+  },
+
+  newContactHead:{
+    borderBottom: "1px solid white",
+    color: "#6976d9",
+    fontSize: "20px",
+    fontHeight: "600",
+    lineHeight: "24px",
+    padding: "10px",
+    textAlign: "center",
+    background: "lavender",
+    cursor: "pointer",
+    '&:hover': {
+      background: "rgba(190, 190, 241,0.6)",
+      boxShadow: "1px",
+    },
+  },
+  newContactInput:{
+    direction: "rtl",
+    height:" 55px",
+  
+  },
+  newContactLabel:{
+    right: "-80%"  ,
+ 
+  },
+  submitButton:{
+    backgroundColor: "#818de4",
+    color: "white",
+    fontFamily: "sans-serif",
+    fontSize: "20px",
+    marginTop: "2rem",
+    height: "3rem",
+    borderRadius:" 20px",
+    cursor: "pointer",
+    '&:hover': {
+      background: "rgba(147, 147, 241, 0.7)",
+      boxShadow: "1px",
+    },
+  },
+}
