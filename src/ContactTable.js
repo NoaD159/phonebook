@@ -2,7 +2,7 @@ import { useState } from "react"
 import { Select, MenuItem, InputLabel } from "@material-ui/core"
 import ContactList from "./ContactList"
 import { withStyles } from "@material-ui/styles"
-import { Margin } from "@mui/icons-material"
+
 
    const styles={
     selectContainer: {
@@ -25,13 +25,13 @@ function ContactTable({classes,contacts, removeContact, editContact}){
    const otherList=[]
 contacts.map(contact=>{
     if(contact.tag=== "matya"){
-matyaContactList.push(contact)
+return matyaContactList.push(contact)
     } else if(contact.tag==="city"){
-        cityContactList.push(contact)
+      return  cityContactList.push(contact)
     } else if(contact.tag==='kinder'){
-        kinderContactList.push(contact)
+       return kinderContactList.push(contact)
     } else{
-otherList.push(contact)
+return otherList.push(contact)
     }})
 
     const tagInfo= [
