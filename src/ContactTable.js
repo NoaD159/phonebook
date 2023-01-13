@@ -41,28 +41,27 @@ return otherList.push(contact)
         {tagName: "other", color: 'ccdd8033', head: 'אחר',  contacts: otherList},
     ]
 
-    const handleTagChange=(e)=>{
-        setFilterByTag(e.target.value)
-    }
 
 
     const noFilterList= tagInfo.map(tag=>
-        <div>
+        <div key={tag.tagName}>
             <h3 
-            style={{backgroundColor: tag.color}}>{tag.head}</h3>
+            style={{backgroundColor:`#${tag.color}`}}>{tag.head}</h3>
         <ContactList  
         removeContact={removeContact}  
         editContact={editContact}
         color={tag.color}
 contacts={tag.contacts}
-key={tag.tagName}
-
         />
-        </div>
-        )
-    
+        </div>        )
+
+
+
+  const handleTagChange=(e)=>{
+     setFilterByTag(e.target.value)}
+
 return(
-    <div>
+    <div className="ContactTable">
     <h2>טלפונים שימושיים</h2>
     <div className={classes.selectContainer}>
     <InputLabel id="filter-tag-label">סנן לפי תוית</InputLabel>
@@ -88,7 +87,7 @@ onChange={handleTagChange}
 noFilterList :
 
 
-tagInfo.map((tag, i)=> {if(tag.tagName=== filterByTag){
+tagInfo.map((tag)=> {if(tag.tagName=== filterByTag){
 
     return <ContactList 
   removeContact={removeContact}  

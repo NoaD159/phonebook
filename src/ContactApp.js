@@ -5,6 +5,19 @@ import {initialContacts} from "./seeds/initialContact";
 import NewContactForm from "./NewContactForm"
 import ContactTable from "./ContactTable";
 
+import { withStyles } from "@material-ui/styles";
+
+const styles= {
+    "@global": {
+        ".fade-exit": {
+          opacity: 1
+        },
+        ".fade-exit-active": {
+          opacity: 0,
+          transition: "opacity 500ms ease-out"
+        }
+      },
+}
 
 function ContactApp(){
     const [contacts, setContacts]= useState(initialContacts)
@@ -50,4 +63,4 @@ return(
 </div>)
 }
 
-export default ContactApp
+export default withStyles(styles) (ContactApp)

@@ -1,12 +1,21 @@
+import React from "react"
 import { useState } from "react"
 
 import { Dialog, DialogTitle, TextField, Select, MenuItem } from "@material-ui/core"
-
 import { withStyles } from "@material-ui/styles"
 import styles from './styles/EditDialogStyles'
+import { Zoom  } from "@material-ui/core";
+
+
+  const Transition = React.forwardRef((props, ref) => {
+  return <Zoom timeout={2000} ref={ref} {...props} />;
+});
 
  function EdidDialog({classes,open, close, editContact, name, id, tag, roll, phoneNumber, email, officePhone}) {
+ 
   const [contact, setContact]=useState({name, roll, id, officePhone, phoneNumber,email, tag})
+
+
 
   const handleChange=(e)=>{
 
@@ -21,9 +30,9 @@ close()
   
 
     return (
-   <Dialog open={open} onClose={close} >
+   <Dialog TransitionComponent={Transition} open={open} onClose={close} >
     <DialogTitle
-  disableTypography="true"
+  disableTypography={true}
     className={classes.editContactHead}>עריכת איש קשר</DialogTitle>
     <form className={classes.EditContactForm} onSubmit={handleEditForm}>
     <TextField 

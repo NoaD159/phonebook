@@ -1,17 +1,24 @@
-// import { useState } from "react";
+import React, { useState } from "react";
 
 import { Dialog } from "@mui/material";
 import { Avatar, DialogTitle, List, ListItem, ListItemAvatar, ListItemText } from "@material-ui/core";
 import { Close, Delete } from "@mui/icons-material";
+import { Zoom  } from "@material-ui/core";
 
 
-function DeleteDialog({open, close, removeContact, deleteId}){
+
+const Transition = React.forwardRef((props, ref) => {
+  return <Zoom timeout={2000} ref={ref} {...props} />;
+});
+
+function DeleteDialog({ open, close, removeContact, deleteId}){
 
   const deleteContact=(deleteId)=>{
     removeContact(deleteId)
   }
 
-    return( <Dialog open={open} onClose={close}>
+    return( 
+    <Dialog TransitionComponent={Transition} open={open} onClose={close}>
         <DialogTitle style={{background: "rgba(239, 128, 158, 0.4)" }}> למחוק איש קשר?</DialogTitle>
         <List>
             <ListItem button onClick={close} >
@@ -34,5 +41,5 @@ function DeleteDialog({open, close, removeContact, deleteId}){
      </Dialog>)
 
 }
-
-export default DeleteDialog
+// withStyles(styles)
+export default  (DeleteDialog);

@@ -7,6 +7,7 @@ import UseToggleState from './hooks/UseToggleState'
 import { withStyles } from "@material-ui/styles";
 import styles from './styles/NewContactFormStyles'
 
+
 function NewContactForm({addContact, classes}){
 
     const newContactResetForm={
@@ -52,9 +53,6 @@ label='שם'
 InputLabelProps={{ classes: { root: classes.newContactLabel } }}
 value={newContact.name} 
 onChange={handleChange}
-
-//  error
-//  helperText="No Value added in this field"
 >
 </TextField>
 
