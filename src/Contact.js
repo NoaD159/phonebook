@@ -27,7 +27,7 @@ function Contact(
     color,
     removeContact,
     editContact,
-    id,
+    _id,
   },
   props
 ) {
@@ -92,9 +92,6 @@ function Contact(
 
         <ListItemSecondaryAction className={classes.icons}>
           <IconButton className={classes.icon} onClick={handleDelete}>
-            {/* <DeleteIcon aria-label='Delete' onClick={()=>{
-        removeContact(id)
-    }}/> */}
             <DeleteIcon />
           </IconButton>
           <IconButton className={classes.icon} onClick={handleEdit}>
@@ -106,13 +103,13 @@ function Contact(
         open={isDeleteDialogOpen}
         close={closeDeleteDialog}
         removeContact={removeContact}
-        deleteId={id}
+        deleteId={_id}
       />
       <EdidDialog
         open={isEditDialogOpen}
         close={closeEditDialog}
         editContact={editContact}
-        id={id}
+        id={_id}
         name={name}
         roll={roll}
         tag={tag}
