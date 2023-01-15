@@ -1,66 +1,68 @@
-import { useState } from "react"
-import { v4 as uuid } from 'uuid';
+import { useState, useEffect } from "react";
 
-import {initialContacts} from "./seeds/initialContact";
-import NewContactForm from "./NewContactForm"
+import NewContactForm from "./NewContactForm";
 import ContactTable from "./ContactTable";
 
 import { withStyles } from "@material-ui/styles";
+import axios from "axios";
 
-const styles= {
-    "@global": {
-        ".fade-exit": {
-          opacity: 1
-        },
-        ".fade-exit-active": {
-          opacity: 0,
-          transition: "opacity 500ms ease-out"
-        }
-      },
-}
+const styles = {
+  "@global": {
+    ".fade-exit": {
+      opacity: 1,
+    },
+    ".fade-exit-active": {
+      opacity: 0,
+      transition: "opacity 500ms ease-out",
+    },
+  },
+};
 
-function ContactApp(){
-    const [contacts, setContacts]= useState(initialContacts)
+function ContactApp() {
+  const [contacts, setContacts] = useState([]);
 
-    const addContact= (newContact)=>{
-        setContacts([...contacts,
-             {id:uuid(), ...newContact }])
-                 }
-const removeContact=(contactId)=>{
-    const updatedContacts = contacts.filter(contact => contact.id !== contactId);
-setContacts(updatedContacts)
-}
+  useEffect(() => {
+    async function getData() {
+      const response = await axios.get(`http://localhost:8080/contacts`);
+      setContacts(response.data);
+    }
+    getData();
+  }, [contacts]);
 
-const editContact=(contact)=>{
-  
-        const updatedContacts = contacts.map(c =>{
-            if(contact.id === c.id){
-                return contact
-            } else {
-                return c 
-            }} );
-  
-        setContacts(updatedContacts)
+  // const addContact = (newContact) => {
+  //   setContacts([...contacts, { ...newContact }]);
+  // };
 
-}
+  const removeContact = async (id) => {
+    const updatedContacts = contacts.filter((contact) => contact._id !== id);
+    await axios.delete(`http://localhost:8080/contacts/${id}`);
+    setContacts(updatedContacts);
+  };
 
-// editTodo: (todoId, newTask) => {
-//     const updatedTodos = todos.map(todo =>
-//       todo.id === todoId ? { ...todo, task: newTask } : todo
-//     );
-//     setTodos(updatedTodos);
-//   }
+  const editContact = (contact) => {
+    const updatedContacts = contacts.map((c) => {
+      if (contact.id === c._id) {
+        return contact;
+      } else {
+        return c;
+      }
+    });
 
-return(
+    setContacts(updatedContacts);
+  };
+
+  return (
     <div className="ContactApp">
-        <h1>אנשי קשר- חולון</h1>
- <NewContactForm addContact={addContact}/>
-<ContactTable  contacts={contacts} removeContact={removeContact} editContact={editContact} />
- {/* <DeleteDialog open={isDialogOpen} close={toggleDeleteDialog}/> */}
-   
-       
-
-</div>)
+      <h1>אנשי קשר- חולון</h1>
+      <NewContactForm />
+      <ContactTable
+        contacts={contacts}
+        removeContact={removeContact}
+        editContact={editContact}
+      />
+      {/* <DeleteDialog open={isDialogOpen} close={toggleDeleteDialog}/> */}
+    </div>
+  );
 }
 
-export default withStyles(styles) (ContactApp)
+export default withStyles(styles)(ContactApp);
