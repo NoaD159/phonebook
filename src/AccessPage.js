@@ -5,23 +5,26 @@ import { withStyles } from "@material-ui/styles";
 import styles from "./styles/AccessPageStyles";
 
 import { NavLink } from "react-router-dom";
-// require("dotenv").config({ path: "../backend/config.env" });
 
-// const correctPassword = process.env.ACCESS_PASSWORD;
+const correctPassword = process.env.REACT_APP_ACCESS;
 
 function AccessPage({ classes }) {
+  const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-  // const history = useHistory();
+  const history = useHistory();
+
   const handleFormSubmit = (e) => {
     e.preventDefault();
-    if ("popo" === e.target.value) {
-      alert("/contacts");
+    if (correctPassword === password) {
+      history.push("/contacts");
     } else {
       setError("סיסמא לא נכונה");
     }
   };
 
-  // handlePasswordChange();
+  const handlePasswordChange = (e) => {
+    setPassword(e.target.value);
+  };
   return (
     <div className={classes.root}>
       <form className="form" onSubmit={handleFormSubmit}>
@@ -32,8 +35,10 @@ function AccessPage({ classes }) {
           </header>
           <div className={classes.formField}>
             <input
+              onChange={handlePasswordChange}
               className={classes.formInput}
               type="password"
+              value={password}
               placeholder="סיסמא"
               name="password"
               required
