@@ -10,8 +10,8 @@ const contactRoutes = require("./routes/contactRoutes");
 require("dotenv").config({ path: "./.env" });
 
 const app = express();
-const port = process.env.PORT || 8080;
-const uri = process.env.MONGODB_URI;
+const port = process.env.REACT_APP_PORT || 8080;
+const uri = process.env.REACT_APP_MONGODB_URI;
 
 app.use(cors());
 app.use(express.json());
