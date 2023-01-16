@@ -23,8 +23,12 @@ function ContactApp() {
 
   useEffect(() => {
     async function getData() {
-      const response = await axios.get(`${baseURL}/contacts`);
-      setContacts(response.data);
+      try {
+        const response = await axios.get(`${baseURL}/contacts`);
+        setContacts(response.data);
+      } catch (error) {
+        console.error(error);
+      }
     }
     getData();
   }, []);

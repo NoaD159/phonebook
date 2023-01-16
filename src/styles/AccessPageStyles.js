@@ -20,7 +20,6 @@ export default {
     backgroundImage: "linear-gradient(-225deg, #E3FDF5 50%, #FFE6FA 50%)",
   },
   container: {
-    display: "-webkit-flex",
     display: "flex",
     border: "2px solid gray",
     borderRadius: "5px",
@@ -57,7 +56,6 @@ export default {
   signIn: {
     display: "inline-block",
     color: "#252537",
-    width: "280px",
     height: "40px",
     padding: "0 20px",
     background: "#fff",
@@ -70,7 +68,6 @@ export default {
     margin: " 7% auto",
     letterSpacing: " 0.05em",
     width: "48%",
-    display: "inline-block",
     marginLeft: " 2%",
   },
 };
