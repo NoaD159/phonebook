@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-
+import baseURL from "./config";
 import NewContactForm from "./NewContactForm";
 import ContactTable from "./ContactTable";
 
@@ -23,7 +23,7 @@ function ContactApp() {
 
   useEffect(() => {
     async function getData() {
-      const response = await axios.get(`http://localhost:8080/contacts`);
+      const response = await axios.get(`${baseURL}/contacts`);
       setContacts(response.data);
     }
     getData();
@@ -35,7 +35,7 @@ function ContactApp() {
 
   const removeContact = async (id) => {
     const updatedContacts = contacts.filter((contact) => contact._id !== id);
-    await axios.delete(`http://localhost:8080/contacts/${id}`);
+    await axios.delete(`${baseURL}/contacts/${id}`);
     setContacts(updatedContacts);
   };
 
