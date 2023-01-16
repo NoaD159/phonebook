@@ -1,16 +1,16 @@
-// if (process.env.NODE_ENV !== "production") {
-//   require("dotenv").config({ path: "./config.env" });
+// if (process.env.REACT_APP_NODE_ENV !== "production") {
+//   require("dotenv").config({ path: "./.env" });
 // }
 
 const express = require("express");
 const cors = require("cors");
 const mongoose = require("mongoose");
 const contactRoutes = require("./routes/contactRoutes");
-require("dotenv").config({ path: "./config.env" });
+require("dotenv").config({ path: "./.env" });
 
 const app = express();
 const port = process.env.PORT || 8080;
-const uri = process.env.ATLAS_URI;
+const uri = process.env.MONGODB_URI;
 
 app.use(cors());
 app.use(express.json());
