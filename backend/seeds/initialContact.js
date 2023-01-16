@@ -179,7 +179,7 @@ module.exports = [
     roll: "מדריכה",
     name: "אתי זוהר",
     tag: "matya",
-    phoneNumber: "",
+    phoneNumber: "0502303055",
     email: "etizo25@gmail.com",
     officePhone: "",
   },

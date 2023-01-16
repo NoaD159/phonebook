@@ -1,0 +1,53 @@
+[33mcommit 59048a3058e625bde4924c43cdd66dd7111320c4[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m)[m
+Author: NoaD159 <110129328+NoaD159@users.noreply.github.com>
+Date:   Sun Jan 15 23:56:11 2023 +0200
+
+    fail to fix
+
+[33mcommit 1d726fe6744068cde761bc52fdaeda50f778eb28[m
+Author: NoaD159 <110129328+NoaD159@users.noreply.github.com>
+Date:   Fri Jan 13 16:49:58 2023 +0200
+
+    fixed deploying issue & added transions
+
+[33mcommit b868da215e9a4e06ebd82bcd31391e0e7f5144a0[m
+Author: NoaD159 <110129328+NoaD159@users.noreply.github.com>
+Date:   Fri Jan 13 12:54:57 2023 +0200
+
+    try to solve depploying issue- downgrade react-dom
+
+[33mcommit 1cf82b80042e9953bca6a2a917a41e0164a10489[m
+Author: NoaD159 <110129328+NoaD159@users.noreply.github.com>
+Date:   Fri Jan 13 12:40:02 2023 +0200
+
+    try to solve depploying issue-2
+
+[33mcommit 2039587fafc18e27f690f1e00890da154f0c3d4d[m
+Author: NoaD159 <110129328+NoaD159@users.noreply.github.com>
+Date:   Fri Jan 13 12:06:47 2023 +0200
+
+    try to solve depploying issue
+
+[33mcommit 5bf0049b337e346059b21c1bc6fac32a219f9433[m
+Author: NoaD159 <110129328+NoaD159@users.noreply.github.com>
+Date:   Thu Jan 12 18:12:43 2023 +0200
+
+    add showemail & filter by tab
+
+[33mcommit 7cca219f9c6024bf9e33c05155ec3ecbc6b2e921[m
+Author: NoaD159 <110129328+NoaD159@users.noreply.github.com>
+Date:   Thu Jan 12 14:19:38 2023 +0200
+
+    fix mui problems + add with style
+
+[33mcommit df6c5b72882e7222c6a95e7c0011225e4288099c[m
+Author: NoaD159 <110129328+NoaD159@users.noreply.github.com>
+Date:   Tue Jan 10 12:20:04 2023 +0200
+
+    basic phonebook app
+
+[33mcommit 376b6dc6879e32e0a110460558d289e79981f1b9[m
+Author: noa <nd15988@hmail.com>
+Date:   Wed Jan 4 12:04:03 2023 +0200
+
+    Initialize project using Create React App

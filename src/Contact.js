@@ -15,22 +15,19 @@ import DeleteDialog from "./DeleteDialog";
 import EdidDialog from "./EditDialog";
 import { ListItemButton } from "@mui/material";
 
-function Contact(
-  {
-    classes,
-    name,
-    roll,
-    phoneNumber,
-    email,
-    tag,
-    officePhone,
-    color,
-    removeContact,
-    editContact,
-    _id,
-  },
-  props
-) {
+function Contact({
+  classes,
+  name,
+  roll,
+  phoneNumber,
+  email,
+  tag,
+  officePhone,
+  color,
+  removeContact,
+  editContact,
+  _id,
+}) {
   const [isDeleteDialogOpen, setDeleteDialog] = useState(false);
   const [isEditDialogOpen, setEditDialog] = useState(false);
 
@@ -86,7 +83,7 @@ function Contact(
             // className={classes.ShowEmailButton}
             onClick={setShowEmail}
           >
-            הצג מייל
+            {email.length > 3 ? "הצג מייל" : "אין מייל להציג"}
           </ListItemButton>
         )}
 
@@ -129,20 +126,3 @@ export default withStyles(styles)(Contact);
 //       סגור
 
 // </IconButton>
-
-// {ShowEmail?
-//     <>
-//         <ListItemText
-//         primary={email}
-//         secondary={closeIcon}
-//     primaryTypographyProps={{ classes: { root: classes.contactEmail } }}>
-//     </ListItemText>
-
-// </>
-//     :
-//     <ListItemButton style={{direction:"ltr"}}
-//     // className={classes.ShowEmailButton}
-//     onClick={setShowEmail}>
-//     הצג מייל
-// </ListItemButton>
-//     }
