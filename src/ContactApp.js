@@ -27,7 +27,7 @@ function ContactApp() {
       setContacts(response.data);
     }
     getData();
-  }, [contacts]);
+  }, []);
 
   // const addContact = (newContact) => {
   //   setContacts([...contacts, { ...newContact }]);
