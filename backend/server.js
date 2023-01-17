@@ -13,7 +13,7 @@ const app = express();
 const port = process.env.REACT_APP_PORT || 8080;
 const uri = process.env.MONGODB_URI;
 
-app.use(cors());
+app.use(cors({origin: process.env.REACT_APP_BASE_URL}))
 app.use(express.json());
 
 mongoose.set("strictQuery", true);
