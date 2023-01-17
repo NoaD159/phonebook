@@ -101,7 +101,7 @@ function ContactTable({ classes, contacts, removeContact, editContact }) {
         </Select>
       </div>
 
-      {filterByTag === "all"
+      {filterByTag === "all" && contacts
         ? noFilterList
         : tagInfo.map((tag) => {
             if (tag.tagName === filterByTag) {
