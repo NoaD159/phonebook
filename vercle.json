@@ -1,5 +1,5 @@
 {
   "version": 2,
-  "builds": [{ "src": "api/package.json", "use": "@vercel/node" }],
+  "builds": [{ "src": "package.json", "use": "@now/static-build" }],
   "routes": [{ "src": "/(.*)", "dest": "api/server.js" }]
 }
