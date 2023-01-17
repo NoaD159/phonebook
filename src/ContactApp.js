@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import baseURL from "./config";
+
 import NewContactForm from "./NewContactForm";
 import ContactTable from "./ContactTable";
 
@@ -24,7 +24,7 @@ function ContactApp() {
   useEffect(() => {
     async function getData() {
       try {
-        const response = await axios.get(`${baseURL}/contacts`);
+        const response = await axios.get(`${process.env.REACT_APP_BASE_URL}/contacts`);
         setContacts(response.data);
       } catch (error) {
         console.error(error);
@@ -39,7 +39,7 @@ function ContactApp() {
 
   const removeContact = async (id) => {
     const updatedContacts = contacts.filter((contact) => contact._id !== id);
-    await axios.delete(`${baseURL}/contacts/${id}`);
+    await axios.delete(`${process.env.REACT_APP_BASE_URL}/contacts/${id}`);
     setContacts(updatedContacts);
   };
 
