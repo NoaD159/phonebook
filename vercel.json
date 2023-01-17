@@ -1,9 +1,13 @@
 {
   "version": 2,
-
+  "buildCommand": [{ "src": "package.json", "use": "@now/static-build" }],
   "builds": [
-    { "src": "./api/server.js", "use": "@now/node-server" },
-    { "src": "./build", "use": "@vercel/static" }
+    { "src": "api/server.js", "use": "@vercel/node" },
+    {
+      "src": "package.json",
+      "use": "@vercel/static-build",
+      "config": { "distDir": "build" }
+    }
   ],
   "routes": [{ "src": "/(.*)", "dest": "./api/server.js" }],
   "headers": [
