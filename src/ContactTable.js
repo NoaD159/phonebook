@@ -20,6 +20,7 @@ function ContactTable({ classes, contacts, removeContact, editContact }) {
   const cityContactList = [];
   const kinderContactList = [];
   const otherList = [];
+
   contacts.map((contact) => {
     if (contact.tag === "matya") {
       return matyaContactList.push(contact);
@@ -27,8 +28,10 @@ function ContactTable({ classes, contacts, removeContact, editContact }) {
       return cityContactList.push(contact);
     } else if (contact.tag === "kinder") {
       return kinderContactList.push(contact);
-    } else {
+    } else if (contact.tag === "other") {
       return otherList.push(contact);
+    } else {
+      return;
     }
   });
 
@@ -101,7 +104,7 @@ function ContactTable({ classes, contacts, removeContact, editContact }) {
         </Select>
       </div>
 
-      {filterByTag === "all" && contacts.length
+      {filterByTag === "all"
         ? noFilterList
         : tagInfo.map((tag) => {
             if (tag.tagName === filterByTag) {
