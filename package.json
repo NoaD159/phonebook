@@ -25,7 +25,7 @@
   },
   "scripts": {
     "react-start": "react-scripts start",
-    "express-start": "nodemon api/server.js",
+    "express-start": "node api/server.js",
     "start": "concurrently \"npm run react-start\" \"npm run express-start\"",
     "build": "react-scripts build",
     "test": "react-scripts test",
