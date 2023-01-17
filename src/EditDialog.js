@@ -1,7 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import axios from "axios";
-import baseURL from "./config";
+
 import {
   Dialog,
   DialogTitle,
@@ -41,7 +41,7 @@ function EdidDialog({
 
   useEffect(() => {
     async function getData() {
-      const response = await axios.get(`${baseURL}/contacts/${id}`);
+      const response = await axios.get(`${process.env.REACT_APP_BASE_URL}/contacts/${id}`);
       setContact(response.data);
     }
     getData();
@@ -54,7 +54,7 @@ function EdidDialog({
   const handleEditForm = (e) => {
     e.preventDefault();
     editContact(contact);
-    axios.put(`${baseURL}/contacts/${id}`, contact);
+    axios.put(`${process.env.REACT_APP_BASE_URL}/contacts/${id}`, contact);
     close();
   };
 
