@@ -22,7 +22,7 @@ function ContactTable({ classes, contacts, removeContact, editContact }) {
   const otherList = [];
 
   const mapContacts = () => {
-    if (contacts.length > 0) {
+    if (contacts.length > 3) {
       contacts.filter((contact) => {
         if (contact.tag === "matya") {
           return matyaContactList.push(contact);
