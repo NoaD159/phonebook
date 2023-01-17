@@ -25,6 +25,7 @@ connection.once("open", () => {
 
 app.use(express.urlencoded({ extended: true }));
 app.use("/contacts", contactRoutes);
+app.use(express.static(path.join(__dirname, "../build")));
 
 app.listen(port, () => {
   console.log(`Server is running on port: ${port}`);

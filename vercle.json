@@ -4,7 +4,10 @@
     { "src": "package.json", "use": "@vercel/static" },
     { "src": "api/server.js", "use": "@vercel/node" }
   ],
-  "builds": [{ "src": "api/server.js", "use": "@vercel/static" }],
+  "builds": [
+    { "src": "api/server.js", "use": "@vercel/node" },
+    { "src": "/build", "use": "@vercel/static" }
+  ],
   "routes": [{ "src": "/(.*)", "dest": "api/server.js" }],
   "headers": [
     {
