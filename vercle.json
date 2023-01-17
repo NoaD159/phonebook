@@ -1,8 +1,11 @@
 {
   "version": 2,
-  "buildCommand": ["node api/server.js"],
-  "builds": [{ "src": "package.json", "use": "@now/static-build" }],
-  "routes": [{ "src": "/(.*)", "dest": "api/server.js" }],
+  "buildCommand": [
+    { "src": "package.json", "use": "@vercel/static" },
+    { "src": "./api/server.js", "use": "@vercel/node" }
+  ],
+  "builds": [{ "src": "package.json", "use": "@vercel/static" }],
+  "routes": [{ "src": "/(.*)", "dest": "./api/server.js" }],
   "headers": [
     {
       "source": "/api/(.*)",
@@ -18,6 +21,12 @@
           "value": "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version"
         }
       ]
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/(.*)",
+      "destination": "./server/server.js"
     }
   ]
 }
