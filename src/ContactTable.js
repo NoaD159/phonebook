@@ -21,20 +21,23 @@ function ContactTable({ classes, contacts, removeContact, editContact }) {
   const kinderContactList = [];
   const otherList = [];
 
-  contacts.map((contact) => {
-    if (contact.tag === "matya") {
-      return matyaContactList.push(contact);
-    } else if (contact.tag === "city") {
-      return cityContactList.push(contact);
-    } else if (contact.tag === "kinder") {
-      return kinderContactList.push(contact);
-    } else if (contact.tag === "other") {
-      return otherList.push(contact);
-    } else {
-      return;
+  const mapContacts = () => {
+    if (contacts.length > 0) {
+      contacts.filter((contact) => {
+        if (contact.tag === "matya") {
+          return matyaContactList.push(contact);
+        } else if (contact.tag === "city") {
+          return cityContactList.push(contact);
+        } else if (contact.tag === "kinder") {
+          return kinderContactList.push(contact);
+        } else {
+          return otherList.push(contact);
+        }
+      });
     }
-  });
+  };
 
+  mapContacts();
   const tagInfo = [
     {
       tagName: "matya",
