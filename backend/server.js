@@ -11,7 +11,7 @@ require("dotenv").config({ path: "./.env" });
 
 const app = express();
 const port = process.env.REACT_APP_PORT || 8080;
-const uri = process.env.REACT_APP_MONGODB_URI;
+const uri = process.env.MONGODB_URI;
 
 app.use(cors());
 app.use(express.json());
