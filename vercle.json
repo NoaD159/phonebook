@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "builds": [
+    { "src": "package.json", "use": "@now/next" },
+    { "src": "backend/package.json", "use": "@now/node" }
+  ],
+  "routes": [{ "src": "/api/(.*)", "dest": "backend/server.js" }],
+  "env": {
+    "MONGO_URI": "@mongo-uri"
+  }
+}
