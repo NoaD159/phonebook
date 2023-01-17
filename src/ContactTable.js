@@ -22,8 +22,8 @@ function ContactTable({ classes, contacts, removeContact, editContact }) {
   const otherList = [];
 
   const mapContacts = () => {
-    if (contacts.length > 0) {
-      contacts.filter((contact) => {
+    if (Array.isArray(contacts)) {
+      contacts.map((contact) => {
         if (contact.tag === "matya") {
           return matyaContactList.push(contact);
         } else if (contact.tag === "city") {

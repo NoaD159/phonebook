@@ -26,6 +26,7 @@ function ContactApp() {
       try {
         const response = await axios.get(`${baseURL}/contacts`);
         setContacts(response.data);
+        console.log(response.data);
       } catch (error) {
         console.error(error);
       }
