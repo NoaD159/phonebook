@@ -31,7 +31,7 @@ connection.once("open", () => {
 });
 
 app.use(express.urlencoded({ extended: true }));
-// app.use(express.static(path.join(__dirname, "../build")));
+app.use(express.static(path.join(__dirname, "../build")));
 
 app.use("/contacts", contactRoutes);
 
