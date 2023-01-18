@@ -8,5 +8,8 @@
       "use": "@vercel/static"
     }
   ],
-  "rewrites": [{ "source": "/(.*)", "destination": "./api/server.js" }]
+  "routes": [
+    { "src": "/api/(.*)", "dest": "api/server.js" },
+    { "src": "/.*", "dest": "build/index.html" }
+  ]
 }
