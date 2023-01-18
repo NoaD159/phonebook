@@ -25,8 +25,14 @@ connection.once("open", () => {
 });
 
 app.use(express.urlencoded({ extended: true }));
-app.use(express.static(path.join(__dirname, "../build")));
-
+// app.use(express.static(path.join(__dirname, "../build")));
+app.use((req, res, next) => {
+  res.setHeader(
+    "Content-Security-Policy",
+    "script-src 'self' 'unsafe-eval' 'unsafe-inline' https://snap.licdn.com"
+  );
+  next();
+});
 app.use("/contacts", contactRoutes);
 
 app.get("/", (req, res) => {
