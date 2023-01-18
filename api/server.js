@@ -13,7 +13,13 @@ require("dotenv").config({ path: "./.env" });
 const app = express();
 const port = process.env.REACT_APP_PORT || 8080;
 const uri = process.env.MONGODB_URI;
-
+app.use((req, res, next) => {
+  res.setHeader(
+    "Content-Security-Policy",
+    "script-src 'self' 'unsafe-eval' 'unsafe-inline' https://snap.licdn.com"
+  );
+  next();
+});
 app.use(cors({ origin: "*" }));
 app.use(express.json());
 
@@ -26,13 +32,7 @@ connection.once("open", () => {
 
 app.use(express.urlencoded({ extended: true }));
 // app.use(express.static(path.join(__dirname, "../build")));
-app.use((req, res, next) => {
-  res.setHeader(
-    "Content-Security-Policy",
-    "script-src 'self' 'unsafe-eval' 'unsafe-inline' https://snap.licdn.com"
-  );
-  next();
-});
+
 app.use("/contacts", contactRoutes);
 
 app.get("/", (req, res) => {
