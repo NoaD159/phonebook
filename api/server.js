@@ -36,11 +36,11 @@ app.use(express.static(path.join(__dirname, "../build")));
 app.use("/contacts", contactRoutes);
 
 app.get("/", (req, res) => {
-  res.json("success!");
+  console.log("Home Route");
 });
 
 app.get("/*", (req, res) => {
-  res.json("success!");
+  console.log("This page does not exist");
 });
 
 app.listen(port, () => {
