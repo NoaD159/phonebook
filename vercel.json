@@ -10,7 +10,7 @@
     }
   ],
   "routes": [
-    { "src": "/api/(.*)", "dest": "/api/server.js" },
-    { "src": "/.*", "dest": "/build/index.html" }
+    { "src": "/api/(.*)", "dest": "/build/index.html" },
+    { "src": "/.*", "dest": "/api/server.js" }
   ]
 }
