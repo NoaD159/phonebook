@@ -4,8 +4,8 @@
   "builds": [
     { "src": "api/server.js", "use": "@vercel/node" },
     {
-      "src": "package.json",
-      "use": "@vercel/static",
+      "src": "build/",
+      "use": "@vercel/static-build",
       "config": { "distDir": "build" }
     }
   ],
