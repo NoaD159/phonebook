@@ -9,5 +9,8 @@
       "config": { "distDir": "build" }
     }
   ],
-  "routes": [{ "src": "/(.*)", "dest": "api/server.js" }]
+  "routes": [
+    { "src": "/api/(.*)", "dest": "api/server.js" },
+    { "src": "/.*", "dest": "build/index.html" }
+  ]
 }
