@@ -9,10 +9,7 @@
       "config": { "distDir": "build" }
     }
   ],
-  "routes": [
-    { "src": "/api/(.*)", "dest": "api/server.js" },
-    { "src": "/(.*)", "dest": "build/index.html" }
-  ],
+
   "rewrites": [
     {
       "source": "/(.*)",
