@@ -31,8 +31,7 @@ function ContactApp() {
             headers: {
               "Access-Control-Allow-Origin": "*",
               "Content-Type": "application/json",
-              Authorization: key,
-              withCredentials: true,
+
               mode: "no-cors",
             },
           }
@@ -64,8 +63,7 @@ function ContactApp() {
       headers: {
         "Access-Control-Allow-Origin": "*",
         "Content-Type": "application/json",
-        Authorization: key,
-        withCredentials: true,
+
         mode: "no-cors",
       },
     });
