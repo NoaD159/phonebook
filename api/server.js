@@ -14,12 +14,13 @@ const app = express();
 const port = process.env.REACT_APP_PORT || 8080;
 const uri = process.env.MONGODB_URI;
 
-app.use(function (req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header(
-    "Access-Control-Allow-Headers",
-    "Origin, X-Requested-With, Content-Type, Accept"
+pp.use((req, res, next) => {
+  res.setHeader(
+    "Access-Control-Allow-Origin",
+    "https://https://phonebook-holon.vercel.app"
   );
+  res.setHeader("Access-Control-Allow-Headers", "Content-type");
+  res.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
   next();
 });
 
