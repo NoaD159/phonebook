@@ -53,7 +53,7 @@ connection.once("open", () => {
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "../build")));
-app.options("*", cors());
+
 app.use("/contacts", contactRoutes);
 
 app.get("/", (req, res) => {
