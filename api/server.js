@@ -14,17 +14,17 @@ const app = express();
 const port = process.env.REACT_APP_PORT || 8080;
 const uri = process.env.MONGODB_URI;
 
-pp.use((req, res, next) => {
-  res.setHeader(
-    "Access-Control-Allow-Origin",
-    "https://https://phonebook-holon.vercel.app"
-  );
-  res.setHeader("Access-Control-Allow-Headers", "Content-type");
-  res.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
-  next();
-});
+// pp.use((req, res, next) => {
+//   res.setHeader(
+//     "Access-Control-Allow-Origin",
+//     "https://https://phonebook-holon.vercel.app"
+//   );
+//   res.setHeader("Access-Control-Allow-Headers", "Content-type");
+//   res.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
+//   next();
+// });
 
-app.use(cors({ origin: "*" }));
+app.use(cors());
 app.use(express.json());
 
 mongoose.set("strictQuery", true);
