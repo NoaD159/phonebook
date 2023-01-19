@@ -25,7 +25,17 @@ function ContactApp() {
     async function getData() {
       try {
         const response = await axios.get(
-          `${process.env.REACT_APP_BASE_URL}/contacts`
+          `${process.env.REACT_APP_BASE_URL}/contacts`,
+          {
+            method: "GET",
+            headers: {
+              "Access-Control-Allow-Origin": "*",
+              "Content-Type": "application/json",
+              Authorization: key,
+              withCredentials: true,
+              mode: "no-cors",
+            },
+          }
           // const response = await fetch(
           //   `${process.env.REACT_APP_BASE_URL}/contacts`,
           //   {
@@ -49,7 +59,16 @@ function ContactApp() {
 
   const removeContact = async (id) => {
     const updatedContacts = contacts.filter((contact) => contact._id !== id);
-    await axios.delete(`${process.env.REACT_APP_BASE_URL}/contacts/${id}`);
+    await axios.delete(`${process.env.REACT_APP_BASE_URL}/contacts/${id}`, {
+      method: "DELETE",
+      headers: {
+        "Access-Control-Allow-Origin": "*",
+        "Content-Type": "application/json",
+        Authorization: key,
+        withCredentials: true,
+        mode: "no-cors",
+      },
+    });
 
     // await fetch(`${process.env.REACT_APP_BASE_URL}/contacts/${id}`, {
     //   method: "DELETE",
