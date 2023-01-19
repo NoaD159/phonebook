@@ -41,7 +41,14 @@ function EdidDialog({
 
   useEffect(() => {
     async function getData() {
-      const response = await axios.get(`${process.env.REACT_APP_BASE_URL}/contacts/${id}`);
+      const response = await axios.get(
+        `${process.env.REACT_APP_BASE_URL}/contacts/${id}`,
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
       setContact(response.data);
     }
     getData();
@@ -54,7 +61,15 @@ function EdidDialog({
   const handleEditForm = (e) => {
     e.preventDefault();
     editContact(contact);
-    axios.put(`${process.env.REACT_APP_BASE_URL}/contacts/${id}`, contact);
+    axios.put(
+      `${process.env.REACT_APP_BASE_URL}/contacts/${id}`,
+      {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      },
+      contact
+    );
     close();
   };
 

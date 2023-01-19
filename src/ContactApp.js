@@ -24,7 +24,14 @@ function ContactApp() {
   useEffect(() => {
     async function getData() {
       try {
-        const response = await axios.get(`${process.env.REACT_APP_BASE_URL}/contacts`);
+        const response = await axios.get(
+          `${process.env.REACT_APP_BASE_URL}/contacts`,
+          {
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        );
         setContacts(response.data);
       } catch (error) {
         console.error(error);
@@ -39,7 +46,11 @@ function ContactApp() {
 
   const removeContact = async (id) => {
     const updatedContacts = contacts.filter((contact) => contact._id !== id);
-    await axios.delete(`${process.env.REACT_APP_BASE_URL}/contacts/${id}`);
+    await axios.delete(`${process.env.REACT_APP_BASE_URL}/contacts/${id}`, {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
     setContacts(updatedContacts);
   };
 
