@@ -53,10 +53,13 @@ function EdidDialog({
     setContact({ ...contact, [e.target.name]: e.target.value });
   };
 
-  const handleEditForm = (e) => {
+  const handleEditForm = async (e) => {
     e.preventDefault();
     editContact(contact);
-    axios.put(`${process.env.REACT_APP_BASE_URL}/contacts/${id}`, contact);
+    await axios.put(
+      `${process.env.REACT_APP_BASE_URL}/contacts/${id}`,
+      contact
+    );
     close();
   };
 

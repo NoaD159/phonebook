@@ -21,6 +21,8 @@ router
       officePhone,
     });
     await newContact.save();
+    res.json(newContact);
+    // res.status(201).send()
   });
 
 router
@@ -30,12 +32,10 @@ router
     const contact = await Contact.findById(id);
     res.json(contact);
   })
-  .delete(async (req, res) => {
-    const { id } = req.params;
-    await Contact.findByIdAndDelete(id);
-  })
+
   .put(async (req, res) => {
     const { id } = req.params;
+
     // const contact = req.body;
     // const updateContact = Contact.findByIdAndUpdate(id, req.body.contact);
     const { name, tag, roll, email, phoneNumber, officePhone } = req.body;
@@ -48,6 +48,13 @@ router
     contact.officePhone = officePhone;
 
     await contact.save();
+    res.json(contact);
+  })
+  .delete(async (req, res) => {
+    const { id } = req.params;
+    console.log(id);
+    await Contact.findByIdAndDelete(id);
+    res.json({ message: "Contact deleted" });
   });
 
 module.exports = router;

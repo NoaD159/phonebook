@@ -17,10 +17,6 @@ const Transition = React.forwardRef((props, ref) => {
 });
 
 function DeleteDialog({ open, close, removeContact, deleteId }) {
-  const deleteContact = (deleteId) => {
-    removeContact(deleteId);
-  };
-
   return (
     <Dialog TransitionComponent={Transition} open={open} onClose={close}>
       <DialogTitle style={{ background: "rgba(239, 128, 158, 0.4)" }}>
@@ -39,7 +35,8 @@ function DeleteDialog({ open, close, removeContact, deleteId }) {
         <ListItem
           button
           onClick={() => {
-            deleteContact(deleteId);
+            removeContact(deleteId);
+            close();
           }}
         >
           <ListItemAvatar>

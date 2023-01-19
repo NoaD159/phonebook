@@ -48,7 +48,7 @@ function ContactApp() {
       }
     }
     getData();
-  }, []);
+  }, [contacts]);
 
   // const addContact = (newContact) => {
   //   setContacts([...contacts, { ...newContact }]);
