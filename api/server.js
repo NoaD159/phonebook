@@ -23,6 +23,14 @@ const uri = process.env.MONGODB_URI;
 //   res.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
 //   next();
 // });
+
+app.use((req, res, next) => {
+  res.setHeader("Access-Control-Allow-Origin", process.env.REACT_APP_BASE_URL);
+  res.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type");
+  res.setHeader("Access-Control-Allow-Credentials", "true");
+  next();
+});
 const corsOptions = {
   origin: process.env.REACT_APP_BASE_URL,
   credentials: true, //access-control-allow-credentials:true
@@ -42,7 +50,7 @@ connection.once("open", () => {
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "../build")));
-
+app.options("*", cors());
 app.use("/contacts", contactRoutes);
 
 app.get("/", (req, res) => {
