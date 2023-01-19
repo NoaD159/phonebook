@@ -25,16 +25,14 @@ function ContactApp() {
     async function getData() {
       try {
         const response = await axios.get(
-          `${process.env.REACT_APP_BASE_URL}/contacts`
-          // {
-          //   method: "GET",
-          //   headers: {
-          //     "Access-Control-Allow-Origin": "*",
-          //     "Content-Type": "application/json",
-
-          //     mode: "no-cors",
-          //   },
-          // }
+          `${process.env.REACT_APP_BASE_URL}/contacts`,
+          {
+            method: "GET",
+            headers: {
+              "Access-Control-Allow-Origin": "*",
+              "Content-Type": "application/json",
+            },
+          }
           // const response = await fetch(
           //   `${process.env.REACT_APP_BASE_URL}/contacts`,
           //   {
@@ -58,18 +56,13 @@ function ContactApp() {
 
   const removeContact = async (id) => {
     const updatedContacts = contacts.filter((contact) => contact._id !== id);
-    await axios.delete(
-      `${process.env.REACT_APP_BASE_URL}/contacts/${id}`
-      // {
-      //   method: "DELETE",
-      //   headers: {
-      //     "Access-Control-Allow-Origin": "*",
-      //     "Content-Type": "application/json",
-
-      //     mode: "no-cors",
-      //   },
-      // }
-    );
+    await axios.delete(`${process.env.REACT_APP_BASE_URL}/contacts/${id}`, {
+      method: "DELETE",
+      headers: {
+        "Access-Control-Allow-Origin": "*",
+        "Content-Type": "application/json",
+      },
+    });
 
     // await fetch(`${process.env.REACT_APP_BASE_URL}/contacts/${id}`, {
     //   method: "DELETE",
