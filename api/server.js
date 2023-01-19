@@ -26,6 +26,7 @@ const uri = process.env.MONGODB_URI;
 const corsOptions = {
   origin: process.env.REACT_APP_BASE_URL,
   credentials: true, //access-control-allow-credentials:true
+  allowedHeaders: ["Content-Type", "Authorization"],
   optionSuccessStatus: 200,
 };
 app.use(cors(corsOptions));
