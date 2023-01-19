@@ -24,7 +24,7 @@ const uri = process.env.MONGODB_URI;
 //   next();
 // });
 
-app.use(cors());
+// app.use(cors());
 app.use(express.json());
 
 mongoose.set("strictQuery", true);
