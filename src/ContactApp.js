@@ -24,16 +24,16 @@ function ContactApp() {
   useEffect(() => {
     async function getData() {
       try {
-        // const response = await axios.get(
-        //   `${process.env.REACT_APP_BASE_URL}/contacts`
-        const response = await fetch(
-          `${process.env.REACT_APP_BASE_URL}/contacts`,
-          {
-            method: "GET",
-            headers: {
-              "Content-Type": "application/json",
-            },
-          }
+        const response = await axios.get(
+          `${process.env.REACT_APP_BASE_URL}/contacts`
+          // const response = await fetch(
+          //   `${process.env.REACT_APP_BASE_URL}/contacts`,
+          //   {
+          //     method: "GET",
+          //     headers: {
+          //       "Content-Type": "application/json",
+          //     },
+          //   }
         );
         setContacts(response.data);
       } catch (error) {
@@ -49,14 +49,14 @@ function ContactApp() {
 
   const removeContact = async (id) => {
     const updatedContacts = contacts.filter((contact) => contact._id !== id);
-    // await axios.delete(`${process.env.REACT_APP_BASE_URL}/contacts/${id}`);
+    await axios.delete(`${process.env.REACT_APP_BASE_URL}/contacts/${id}`);
 
-    await fetch(`${process.env.REACT_APP_BASE_URL}/contacts/${id}`, {
-      method: "DELETE",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
+    // await fetch(`${process.env.REACT_APP_BASE_URL}/contacts/${id}`, {
+    //   method: "DELETE",
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //   },
+    // });
     setContacts(updatedContacts);
   };
 
