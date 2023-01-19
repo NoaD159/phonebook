@@ -25,12 +25,7 @@ function ContactApp() {
     async function getData() {
       try {
         const response = await axios.get(
-          `${process.env.REACT_APP_BASE_URL}/contacts`,
-          {
-            headers: {
-              "Content-Type": "application/json",
-            },
-          }
+          `${process.env.REACT_APP_BASE_URL}/contacts`
         );
         setContacts(response.data);
       } catch (error) {
@@ -46,11 +41,7 @@ function ContactApp() {
 
   const removeContact = async (id) => {
     const updatedContacts = contacts.filter((contact) => contact._id !== id);
-    await axios.delete(`${process.env.REACT_APP_BASE_URL}/contacts/${id}`, {
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
+    await axios.delete(`${process.env.REACT_APP_BASE_URL}/contacts/${id}`);
     setContacts(updatedContacts);
   };
 
