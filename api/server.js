@@ -40,8 +40,8 @@ app.get("/", (req, res) => {
   console.log("Home Route");
 });
 
-app.get("/*", (req, res) => {
-  console.log("This page does not exist");
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "../build", "index.html"));
 });
 
 app.listen(port, () => {
