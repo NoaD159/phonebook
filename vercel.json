@@ -12,7 +12,7 @@
   "routes": [
     {
       "src": "/contacts",
-      "dest": "/"
+      "dest": "/api/server.js"
     },
 
     { "src": "/.*", "dest": "/index.html" }
