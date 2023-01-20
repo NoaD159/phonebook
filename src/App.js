@@ -9,7 +9,7 @@ function App() {
       <Switch>
         <Route exact path="/" component={AccessPage} />
         <Route exact path="/contacts" render={() => <ContactApp />} />
-        <Route path="*" element={AccessPage} />
+        {/* <Route path="*" element={AccessPage} /> */}
       </Switch>
     </div>
   );

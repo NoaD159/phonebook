@@ -64,14 +64,26 @@ function Contact({
         ></ListItemText>
         <ListItemText
           primaryTypographyProps={{ classes: { root: classes.contactPhones } }}
-          primary={phoneNumber}
-          secondary={officePhone}
+          primary={
+            <a href={`tel:${phoneNumber}`} className={classes.clickableLink}>
+              {phoneNumber}
+            </a>
+          }
+          secondary={
+            <a href={`tel:${officePhone}`} className={classes.clickableLink}>
+              {officePhone}
+            </a>
+          }
         ></ListItemText>
 
         {ShowEmail ? (
           <>
             <ListItemText
-              primary={email}
+              primary={
+                <a href={`mailto:${email}`} className={classes.clickableLink}>
+                  {email}
+                </a>
+              }
               primaryTypographyProps={{
                 classes: { root: classes.contactEmail },
               }}
