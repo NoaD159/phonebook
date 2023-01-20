@@ -5,6 +5,7 @@ import { withStyles } from "@material-ui/styles";
 import styles from "./styles/AccessPageStyles";
 
 import { NavLink } from "react-router-dom";
+import axios from "axios";
 
 const correctPassword = process.env.REACT_APP_ACCESS;
 
@@ -13,10 +14,10 @@ function AccessPage({ classes }) {
   const [error, setError] = useState("");
   const history = useHistory();
 
-  const handleFormSubmit = (e) => {
+  const handleFormSubmit = async (e) => {
     e.preventDefault();
     if (correctPassword === password) {
-      history.push("/contacts");
+      await axios.get(`${procces.env.REACT_APP_BASE_URL}`);
     } else {
       setError("סיסמא לא נכונה");
     }

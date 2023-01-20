@@ -11,8 +11,8 @@
   ],
   "routes": [
     {
-      "src": "/contacts(.*)",
-      "dest": "/api/server.js"
+      "src": "/contacts",
+      "handle": "/api/server.js"
     },
 
     { "src": "/.*", "dest": "/build/index.html" }
