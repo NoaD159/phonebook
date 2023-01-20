@@ -14,7 +14,7 @@ import reportWebVitals from "./reportWebVitals";
 
 const root = document.getElementById("root");
 render(
-  <BrowserRouter basename={process.env.REACT_APP_BASE_URL}>
+  <BrowserRouter>
     <App />
   </BrowserRouter>,
   root
