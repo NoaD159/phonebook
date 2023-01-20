@@ -55,11 +55,7 @@ function EdidDialog({
 
   const handleEditForm = async (e) => {
     e.preventDefault();
-    editContact(contact);
-    await axios.put(
-      `${process.env.REACT_APP_BASE_URL}/contacts/${id}`,
-      contact
-    );
+    editContact(contact, id);
     close();
   };
 

@@ -21,74 +21,74 @@ const styles = {
 function ContactApp() {
   const [contacts, setContacts] = useState([]);
 
-  useEffect(() => {
-    async function getData() {
-      try {
-        const response = await axios.get(
-          `${process.env.REACT_APP_BASE_URL}/contacts`,
-          {
-            method: "GET",
-            headers: {
-              "Access-Control-Allow-Origin": "*",
-              "Content-Type": "application/json",
-            },
-          }
-          // const response = await fetch(
-          //   `${process.env.REACT_APP_BASE_URL}/contacts`,
-          //   {
-          //     method: "GET",
-          //     headers: {
-          //       "Content-Type": "application/json",
-          //     },
-          //   }
-        );
-        setContacts(response.data);
-      } catch (error) {
-        console.error(error);
-      }
+  const getData = async () => {
+    try {
+      const response = await axios.get(
+        `${process.env.REACT_APP_BASE_URL}/contacts`
+      );
+      setContacts(response.data);
+    } catch (error) {
+      console.error(error);
     }
+  };
+  // useEffect(() => {
+  //   async function getData() {
+  //     try {
+  //       const response = await axios.get(
+  //         `${process.env.REACT_APP_BASE_URL}/contacts`,
+  //         {
+  //           method: "GET",
+  //           headers: {
+  //             "Access-Control-Allow-Origin": "*",
+  //             "Content-Type": "application/json",
+  //           },
+  //         }
+
+  //       );
+  //       setContacts(response.data);
+  //     } catch (error) {
+  //       console.error(error);
+  //     }
+  //   }
+  //   getData();
+  // }, [contacts]);
+
+  useEffect(() => {
     getData();
-  }, [contacts]);
+  }, []);
 
-  // const addContact = (newContact) => {
-  //   setContacts([...contacts, { ...newContact }]);
-  // };
-
-  const removeContact = async (id) => {
-    const updatedContacts = contacts.filter((contact) => contact._id !== id);
-    await axios.delete(`${process.env.REACT_APP_BASE_URL}/contacts/${id}`, {
-      method: "DELETE",
-      headers: {
-        "Access-Control-Allow-Origin": "*",
-        "Content-Type": "application/json",
-      },
-    });
-
-    // await fetch(`${process.env.REACT_APP_BASE_URL}/contacts/${id}`, {
-    //   method: "DELETE",
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //   },
-    // });
-    setContacts(updatedContacts);
+  const addContact = async (newContact) => {
+    await axios.post(`${process.env.REACT_APP_BASE_URL}/contacts`, newContact);
+    getData();
   };
 
-  const editContact = (contact) => {
-    const updatedContacts = contacts.map((c) => {
-      if (contact.id === c._id) {
-        return contact;
-      } else {
-        return c;
-      }
-    });
+  const removeContact = async (id) => {
+    // const updatedContacts = contacts.filter((contact) => contact._id !== id);
+    await axios.delete(`${process.env.REACT_APP_BASE_URL}/contacts/${id}`);
+    getData();
+  };
 
-    setContacts(updatedContacts);
+  const editContact = async (contact, id) => {
+    // const updatedContacts = contacts.map((c) => {
+    //   if (contact.id === c._id) {
+    //     return contact;
+    //   } else {
+    //     return c;
+    //   }
+    // });
+
+    // setContacts(updatedContacts);
+    await axios.put(
+      `${process.env.REACT_APP_BASE_URL}/contacts/${id}`,
+      contact
+    );
+    getData();
   };
 
   return (
     <div className="ContactApp">
       <h1>אנשי קשר- חולון</h1>
-      <NewContactForm />
+      <NewContactForm addContact={addContact} />
       <ContactTable
         contacts={contacts}
         removeContact={removeContact}

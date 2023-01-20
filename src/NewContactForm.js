@@ -31,8 +31,8 @@ function NewContactForm({ addContact, classes }) {
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
-    // addContact(newContact);
-    axios.post(`${process.env.REACT_APP_BASE_URL}/contacts`, newContact);
+    addContact(newContact);
+
     setNewContact(newContactResetForm);
   };
 
