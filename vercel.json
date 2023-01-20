@@ -10,10 +10,11 @@
     { "src": "api/server.js", "use": "@vercel/node" }
   ],
   "routes": [
-    { "src": "/.*", "dest": "build/index.html" },
     {
       "src": "/contacts",
-      "dest": "/api/server.js"
-    }
+      "dest": "api/server.js"
+    },
+
+    { "src": "/.*", "dest": "build/index.html" }
   ]
 }
