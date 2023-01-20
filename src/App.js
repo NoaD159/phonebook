@@ -9,12 +9,7 @@ function App() {
       <Switch>
         <Route exact path="/" component={AccessPage} />
         <Route exact path="/contacts" render={() => <ContactApp />} />
-        <Route
-          path="*"
-          render={() => {
-            console.log("Page not found");
-          }}
-        />
+        <Route path="*" element={AccessPage} />
       </Switch>
     </div>
   );
