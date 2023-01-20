@@ -17,7 +17,7 @@ function AccessPage({ classes }) {
   const handleFormSubmit = async (e) => {
     e.preventDefault();
     if (correctPassword === password) {
-      await axios.get(`${procces.env.REACT_APP_BASE_URL}`);
+      await axios.get(`${process.env.REACT_APP_BASE_URL}`);
     } else {
       setError("סיסמא לא נכונה");
     }
