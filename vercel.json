@@ -12,9 +12,10 @@
   "routes": [
     {
       "src": "/contacts",
-      "dest": "/"
+      "dest": "/api/server.js"
     },
 
     { "src": "/.*", "dest": "build/index.html" }
-  ]
+  ],
+  "fallback": "/build/index.html"
 }
