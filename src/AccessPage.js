@@ -1,23 +1,22 @@
 import { useState } from "react";
-
-import { useHistory } from "react-router-dom";
 import { withStyles } from "@material-ui/styles";
 import styles from "./styles/AccessPageStyles";
-
 import { NavLink } from "react-router-dom";
-import axios from "axios";
 
 const correctPassword = process.env.REACT_APP_ACCESS;
 
-function AccessPage({ classes }) {
+function AccessPage({ classes, onAuth }) {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-  const history = useHistory();
 
   const handleFormSubmit = async (e) => {
     e.preventDefault();
     if (correctPassword === password) {
-      await axios.get(`${process.env.REACT_APP_BASE_URL}`);
+      try {
+        onAuth();
+      } catch (error) {
+        console.log(error);
+      }
     } else {
       setError("סיסמא לא נכונה");
     }
@@ -45,7 +44,10 @@ function AccessPage({ classes }) {
               required
             />
             {error && <p className={classes.error}>{error}</p>}
-            <button className={classes.signIn}> התחבר </button>
+            <button type="submit" className={classes.signIn}>
+              {" "}
+              התחבר{" "}
+            </button>
           </div>
         </div>
       </form>

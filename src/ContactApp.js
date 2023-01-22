@@ -5,6 +5,7 @@ import ContactTable from "./ContactTable";
 
 import { withStyles } from "@material-ui/styles";
 import axios from "axios";
+import LoadingSpinner from "./LoadingSpinner";
 
 const styles = {
   "@global": {
@@ -20,38 +21,20 @@ const styles = {
 
 function ContactApp() {
   const [contacts, setContacts] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   const getData = async () => {
     try {
+      setIsLoading(true);
       const response = await axios.get(
         `${process.env.REACT_APP_BASE_URL}/contacts`
       );
+      setIsLoading(false);
       setContacts(response.data);
     } catch (error) {
       console.error(error);
     }
   };
-  // useEffect(() => {
-  //   async function getData() {
-  //     try {
-  //       const response = await axios.get(
-  //         `${process.env.REACT_APP_BASE_URL}/contacts`,
-  //         {
-  //           method: "GET",
-  //           headers: {
-  //             "Access-Control-Allow-Origin": "*",
-  //             "Content-Type": "application/json",
-  //           },
-  //         }
-
-  //       );
-  //       setContacts(response.data);
-  //     } catch (error) {
-  //       console.error(error);
-  //     }
-  //   }
-  //   getData();
-  // }, [contacts]);
 
   useEffect(() => {
     getData();
@@ -69,15 +52,6 @@ function ContactApp() {
   };
 
   const editContact = async (contact, id) => {
-    // const updatedContacts = contacts.map((c) => {
-    //   if (contact.id === c._id) {
-    //     return contact;
-    //   } else {
-    //     return c;
-    //   }
-    // });
-
-    // setContacts(updatedContacts);
     await axios.put(
       `${process.env.REACT_APP_BASE_URL}/contacts/${id}`,
       contact
@@ -94,6 +68,7 @@ function ContactApp() {
         removeContact={removeContact}
         editContact={editContact}
       />
+      {isLoading && <LoadingSpinner />}
       {/* <DeleteDialog open={isDialogOpen} close={toggleDeleteDialog}/> */}
     </div>
   );
