@@ -26,6 +26,7 @@ function App({ isAuthenticated, login, logout }) {
 
   return (
     <div className="App">
+      <button onClick={() => logout()}>logout</button>
       <Switch>
         <Route
           exact
@@ -41,7 +42,6 @@ function App({ isAuthenticated, login, logout }) {
 
         {/* <Route path="*" element={AccessPage} /> */}
       </Switch>
-      {/* <button onClick={() => logout()}>logout</button> */}
     </div>
   );
 }
