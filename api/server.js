@@ -35,6 +35,11 @@ app.get("/", (req, res) => {
 
 app.get("*", (req, res) => {
   console.log("This page does not exist");
+  res.sendFile(path.join(__dirname, "../build/index.html"), function (err) {
+    if (err) {
+      res.status(500).send(err);
+    }
+  });
 });
 
 app.listen(port, () => {
