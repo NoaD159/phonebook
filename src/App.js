@@ -37,7 +37,7 @@ function App({ isAuthenticated, login, logout }) {
         />
         <Route path="/contacts" component={WithAuth(ContactApp)} />
 
-        {/* <Route path="*" element={AccessPage} /> */}
+        <Route path="*" element={WithAuth(ContactApp)} />
       </Switch>
     </div>
   );
