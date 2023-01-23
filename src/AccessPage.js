@@ -12,11 +12,7 @@ function AccessPage({ classes, onAuth }) {
   const handleFormSubmit = async (e) => {
     e.preventDefault();
     if (correctPassword === password) {
-      try {
-        onAuth();
-      } catch (error) {
-        console.log(error);
-      }
+      onAuth();
     } else {
       setError("סיסמא לא נכונה");
     }

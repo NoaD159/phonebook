@@ -62,13 +62,14 @@ function ContactApp() {
   return (
     <div className="ContactApp">
       <h1>אנשי קשר- חולון</h1>
+      {isLoading && <LoadingSpinner />}
       <NewContactForm addContact={addContact} />
       <ContactTable
         contacts={contacts}
         removeContact={removeContact}
         editContact={editContact}
       />
-      {isLoading && <LoadingSpinner />}
+
       {/* <DeleteDialog open={isDialogOpen} close={toggleDeleteDialog}/> */}
     </div>
   );

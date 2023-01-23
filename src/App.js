@@ -4,17 +4,19 @@ import { connect } from "react-redux";
 import axios from "axios";
 import AccessPage from "./AccessPage";
 import ContactApp from "./ContactApp";
+import WithAuth from "./WithAuth";
 import "./App.css";
 
-function App({ isAuthenticated, login, logout }) {
+function App({ login, logout }) {
   // const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const history = useHistory();
+  // const history = useHistory();
 
-  useEffect(() => {
-    if (isAuthenticated) {
-      history.push("/contacts");
-    }
-  }, [isAuthenticated, history]);
+  // useEffect(() => {
+  //   if (isAuthenticated) {
+  //     history.push("/contacts");
+  //     login();
+  //   }
+  // }, [isAuthenticated, history]);
 
   const handleAuth = () => {
     axios
@@ -33,12 +35,7 @@ function App({ isAuthenticated, login, logout }) {
           path="/"
           render={() => <AccessPage onAuth={handleAuth} />}
         />
-        <Route
-          path="/contacts"
-          render={() =>
-            isAuthenticated ? <ContactApp /> : <Redirect to="/" />
-          }
-        />
+        <Route path="/contacts" component={WithAuth(ContactApp)} />
 
         {/* <Route path="*" element={AccessPage} /> */}
       </Switch>

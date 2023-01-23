@@ -14,7 +14,7 @@ const root = document.getElementById("root");
 render(
   <Provider store={store}>
     <PersistGate loading={<LoadingSpinner />} persistor={persistor}>
-      <BrowserRouter basename="/">
+      <BrowserRouter basename="">
         <App />
       </BrowserRouter>
     </PersistGate>
