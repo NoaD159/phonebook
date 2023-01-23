@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
-import { Route, Switch, Redirect, useHistory } from "react-router-dom";
+import { useEffect } from "react";
+import { Route, Switch, useHistory } from "react-router-dom";
 import { connect } from "react-redux";
 import axios from "axios";
 import AccessPage from "./AccessPage";
@@ -7,16 +7,16 @@ import ContactApp from "./ContactApp";
 import WithAuth from "./WithAuth";
 import "./App.css";
 
-function App({ login, logout }) {
+function App({ isAuthenticated, login, logout }) {
   // const [isAuthenticated, setIsAuthenticated] = useState(false);
-  // const history = useHistory();
+  const history = useHistory();
 
-  // useEffect(() => {
-  //   if (isAuthenticated) {
-  //     history.push("/contacts");
-  //     login();
-  //   }
-  // }, [isAuthenticated, history]);
+  useEffect(() => {
+    if (isAuthenticated) {
+      history.push("/contacts");
+      login();
+    }
+  }, [isAuthenticated, history]);
 
   const handleAuth = () => {
     axios
