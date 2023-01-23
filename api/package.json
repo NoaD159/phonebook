@@ -1,5 +1,6 @@
 {
   "name": "backend",
+  "homepage": "https://phonebook-holon.vercel.app",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
