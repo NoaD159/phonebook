@@ -12,7 +12,7 @@
   "rewrites": [
     {
       "source": "/(.*)",
-      "dest": "build/index.html"
+      "destination": "build/index.html"
     }
   ]
 }
