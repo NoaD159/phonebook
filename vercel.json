@@ -11,10 +11,10 @@
   ],
   "routes": [
     {
-      "src": "/api/contacts(.*)",
-      "dest": "api/server.js"
+      "src": "/api/(.*)",
+      "dest": "/api/server.js"
     },
 
-    { "src": "/.*", "dest": "build/index.html" }
+    { "src": "/.*", "dest": "/build/index.html" }
   ]
 }

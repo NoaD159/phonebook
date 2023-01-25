@@ -35,7 +35,7 @@ function App({ isAuthenticated, login, logout }) {
           path="/"
           render={() => <AccessPage onAuth={handleAuth} />}
         />
-        <Route path="/index" component={WithAuth(ContactApp)} />
+        <Route exact path="/index" component={WithAuth(ContactApp)} />
 
         <Route path="*" element={WithAuth(ContactApp)} />
       </Switch>
