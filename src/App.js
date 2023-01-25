@@ -13,14 +13,14 @@ function App({ isAuthenticated, login, logout }) {
 
   useEffect(() => {
     if (isAuthenticated) {
-      history.push("/contacts");
+      history.push("/index");
       login();
     }
   }, [isAuthenticated, history]);
 
   const handleAuth = () => {
     axios
-      .get(`${process.env.REACT_APP_BASE_URL}/contacts`)
+      .get(`${process.env.REACT_APP_BASE_URL}/api/contacts`)
       .then(() => login())
       .catch((e) => console.log(e));
     // setIsAuthenticated(true);
@@ -35,7 +35,7 @@ function App({ isAuthenticated, login, logout }) {
           path="/"
           render={() => <AccessPage onAuth={handleAuth} />}
         />
-        <Route path="/contacts" component={WithAuth(ContactApp)} />
+        <Route path="/index" component={WithAuth(ContactApp)} />
 
         <Route path="*" element={WithAuth(ContactApp)} />
       </Switch>

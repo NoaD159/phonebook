@@ -42,7 +42,7 @@ function EdidDialog({
   useEffect(() => {
     async function getData() {
       const response = await axios.get(
-        `${process.env.REACT_APP_BASE_URL}/contacts/${id}`
+        `${process.env.REACT_APP_BASE_URL}/api/contacts/${id}`
       );
       setContact(response.data);
     }

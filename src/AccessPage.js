@@ -47,7 +47,7 @@ function AccessPage({ classes, onAuth }) {
           </div>
         </div>
       </form>
-      <NavLink to="/contacts">contact page</NavLink>
+      <NavLink to="/index">contact page</NavLink>
     </div>
   );
 }

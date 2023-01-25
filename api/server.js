@@ -27,11 +27,7 @@ connection.once("open", () => {
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "../build")));
 
-app.use("/contacts", contactRoutes);
-
-app.get("/", (req, res) => {
-  console.log("Home Route");
-});
+app.use("/api/contacts", contactRoutes);
 
 app.get("*", (req, res) => {
   console.log("This page does not exist");

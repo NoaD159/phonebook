@@ -27,7 +27,7 @@ function ContactApp() {
     try {
       setIsLoading(true);
       const response = await axios.get(
-        `${process.env.REACT_APP_BASE_URL}/contacts`
+        `${process.env.REACT_APP_BASE_URL}/api/contacts`
       );
       setIsLoading(false);
       setContacts(response.data);
@@ -41,19 +41,22 @@ function ContactApp() {
   }, []);
 
   const addContact = async (newContact) => {
-    await axios.post(`${process.env.REACT_APP_BASE_URL}/contacts`, newContact);
+    await axios.post(
+      `${process.env.REACT_APP_BASE_URL}/api/contacts`,
+      newContact
+    );
     getData();
   };
 
   const removeContact = async (id) => {
     // const updatedContacts = contacts.filter((contact) => contact._id !== id);
-    await axios.delete(`${process.env.REACT_APP_BASE_URL}/contacts/${id}`);
+    await axios.delete(`${process.env.REACT_APP_BASE_URL}/api/contacts/${id}`);
     getData();
   };
 
   const editContact = async (contact, id) => {
     await axios.put(
-      `${process.env.REACT_APP_BASE_URL}/contacts/${id}`,
+      `${process.env.REACT_APP_BASE_URL}/api/contacts/${id}`,
       contact
     );
     getData();

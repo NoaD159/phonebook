@@ -9,10 +9,12 @@
     },
     { "src": "api/server.js", "use": "@vercel/node" }
   ],
-  "rewrites": [
+  "routes": [
     {
-      "source": "/(.*)",
-      "destination": "/api/server.js"
-    }
+      "src": "/api/contacts(.*)",
+      "dest": "api/server.js"
+    },
+
+    { "src": "/.*", "dest": "build/index.html" }
   ]
 }
