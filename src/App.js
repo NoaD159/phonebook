@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { Route, Switch, useHistory } from "react-router-dom";
+import { Route, Switch, useHistory, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import axios from "axios";
 import AccessPage from "./AccessPage";
@@ -37,7 +37,9 @@ function App({ isAuthenticated, login, logout }) {
         />
         <Route exact path="/index" component={WithAuth(ContactApp)} />
 
-        <Route path="*" element={WithAuth(ContactApp)} />
+        <Route path="*">
+          <Redirect to="/index" />
+        </Route>
       </Switch>
     </div>
   );
