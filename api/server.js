@@ -25,18 +25,18 @@ connection.once("open", () => {
 });
 
 app.use(express.urlencoded({ extended: true }));
-app.use(express.static(path.join(__dirname, "../build")));
+// app.use(express.static(path.join(__dirname, "../build")));
 
 app.use("/api/contacts", contactRoutes);
 
-// app.get("*", (req, res) => {
-//   console.log("This page does not exist");
-//   res.sendFile(path.join(__dirname, "../build/index.html"), function (err) {
-//     if (err) {
-//       res.status(500).send(err);
-//     }
-//   });
-// });
+app.get("*", (req, res) => {
+  console.log("This page does not exist");
+  res.sendFile(path.join(__dirname, "../build/index.html"), function (err) {
+    if (err) {
+      res.status(500).send(err);
+    }
+  });
+});
 
 // app.use((req, res) => {
 //   res.status(404).sendFile(path.join(__dirname, "../build/404.html"));
