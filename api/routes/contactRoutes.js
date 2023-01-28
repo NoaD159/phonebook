@@ -12,17 +12,21 @@ router
   .post(async (req, res) => {
     // const newContact = new Contact(req.body);
     const { name, tag, roll, email, phoneNumber, officePhone } = req.body;
-    const newContact = new Contact({
-      name,
-      roll,
-      tag,
-      email,
-      phoneNumber,
-      officePhone,
-    });
-    await newContact.save();
-    res.json(newContact);
-    // res.status(201).send()
+    try {
+      const newContact = new Contact({
+        name,
+        roll,
+        tag,
+        email,
+        phoneNumber,
+        officePhone,
+      });
+      await newContact.save();
+
+      res.status(201).send(newContact);
+    } catch (err) {
+      res.status(400).send(err);
+    }
   });
 
 router

@@ -22,6 +22,8 @@ const styles = {
 function ContactApp() {
   const [contacts, setContacts] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [snackbarOpen, setSnackbarOpen] = useState(false);
+  const [snackbarError, setSnackbarError] = useState("");
 
   const getData = async () => {
     try {
@@ -41,12 +43,32 @@ function ContactApp() {
   }, []);
 
   const addContact = async (newContact) => {
-    await axios.post(
-      `${process.env.REACT_APP_BASE_URL}/api/contacts`,
-      newContact
-    );
+    try {
+      const response = await axios.post(
+        `${process.env.REACT_APP_BASE_URL}/api/contacts`,
+        newContact
+      );
+    } catch (err) {
+      if (err.response.data.code === 11000) {
+        setSnackbarError("שם זה כבר קיים במערכת");
+        setSnackbarOpen(true);
+      } else {
+        setSnackbarError("משהו השתבש");
+        setSnackbarOpen(true);
+      }
+      console.log("ERR", err.response.data);
+    }
+
     getData();
   };
+
+  // const addContact = async (newContact) => {
+  //   await axios.post(
+  //     `${process.env.REACT_APP_BASE_URL}/api/contacts`,
+  //     newContact
+  //   );
+  //   getData();
+  // };
 
   const removeContact = async (id) => {
     // const updatedContacts = contacts.filter((contact) => contact._id !== id);
@@ -66,7 +88,12 @@ function ContactApp() {
     <div className="ContactApp">
       <h1>אנשי קשר- חולון</h1>
       {isLoading && <LoadingSpinner />}
-      <NewContactForm addContact={addContact} />
+      <NewContactForm
+        addContact={addContact}
+        isSnackbarOpen={snackbarOpen}
+        setSnackbarOpen={setSnackbarOpen}
+        snackbarError={snackbarError}
+      />
       <ContactTable
         contacts={contacts}
         removeContact={removeContact}

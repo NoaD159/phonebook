@@ -1,19 +1,21 @@
-import {
-  Box,
-  Button,
-  InputLabel,
-  MenuItem,
-  Select,
-  TextField,
-} from "@material-ui/core";
+import React from "react";
+import { MenuItem, Select, TextField } from "@material-ui/core";
 import { useState } from "react";
-import axios from "axios";
 import UseToggleState from "./hooks/UseToggleState";
 
+import { Snackbar } from "@material-ui/core";
+import { Cancel } from "@material-ui/icons";
+import { IconButton } from "@material-ui/core";
 import { withStyles } from "@material-ui/styles";
 import styles from "./styles/NewContactFormStyles";
 
-function NewContactForm({ addContact, classes }) {
+function NewContactForm({
+  addContact,
+  classes,
+  snackbarError,
+  isSnackbarOpen,
+  setSnackbarOpen,
+}) {
   const newContactResetForm = {
     name: "",
     roll: "",
@@ -31,6 +33,7 @@ function NewContactForm({ addContact, classes }) {
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
+
     addContact(newContact);
 
     setNewContact(newContactResetForm);
@@ -41,6 +44,24 @@ function NewContactForm({ addContact, classes }) {
       <h3 className={classes.newContactHead} onClick={toggleForm}>
         הוסף איש קשר חדש
       </h3>
+      <Snackbar
+        open={isSnackbarOpen}
+        className={classes.snackbar}
+        message={snackbarError}
+        onClose={() => setSnackbarOpen(false)}
+        action={
+          <React.Fragment>
+            <IconButton
+              size="small"
+              aria-label="close"
+              className={classes.cancelSnackbar}
+              onClick={() => setSnackbarOpen(false)}
+            >
+              <Cancel fontSize="small" />
+            </IconButton>
+          </React.Fragment>
+        }
+      />
       {isFormOpen && (
         <form onSubmit={handleFormSubmit} className={classes.NewContactForm}>
           <div>
