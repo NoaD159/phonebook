@@ -1,7 +1,13 @@
 import { Box, List } from "@material-ui/core";
 import Contact from "./Contact";
 
-function ContactList({ contacts, color, removeContact, editContact }) {
+function ContactList({
+  contacts,
+  color,
+  removeContact,
+  editContact,
+  selectedContactRef,
+}) {
   return (
     <div className="ContactList">
       <Box>
@@ -12,6 +18,7 @@ function ContactList({ contacts, color, removeContact, editContact }) {
               editContact={editContact}
               color={color}
               key={c._id}
+              ref={selectedContactRef}
               {...c}
             />
           ))}

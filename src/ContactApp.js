@@ -1,11 +1,10 @@
-import { useState, useEffect } from "react";
-
+import { useState, useEffect, useRef } from "react";
+import axios from "axios";
 import NewContactForm from "./NewContactForm";
 import ContactTable from "./ContactTable";
-
-import { withStyles } from "@material-ui/styles";
-import axios from "axios";
+import SearchContact from "./SearchContact";
 import LoadingSpinner from "./LoadingSpinner";
+import { withStyles } from "@material-ui/styles";
 
 const styles = {
   "@global": {
@@ -24,6 +23,8 @@ function ContactApp() {
   const [isLoading, setIsLoading] = useState(false);
   const [snackbarOpen, setSnackbarOpen] = useState(false);
   const [snackbarError, setSnackbarError] = useState("");
+
+  const selectedContactRef = useRef(null);
 
   const getData = async () => {
     try {
@@ -94,10 +95,15 @@ function ContactApp() {
         setSnackbarOpen={setSnackbarOpen}
         snackbarError={snackbarError}
       />
+      <SearchContact
+        selectedContactRef={selectedContactRef}
+        contacts={contacts}
+      />
       <ContactTable
         contacts={contacts}
         removeContact={removeContact}
         editContact={editContact}
+        selectedContactRef={selectedContactRef}
       />
 
       {/* <DeleteDialog open={isDialogOpen} close={toggleDeleteDialog}/> */}

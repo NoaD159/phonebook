@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef, forwardRef } from "react";
 import UseToggleState from "./hooks/UseToggleState";
 import {
   ListItemSecondaryAction,
@@ -6,32 +6,31 @@ import {
   ListItemText,
   IconButton,
 } from "@material-ui/core";
-import DeleteIcon from "@mui/icons-material/Delete";
-import EditIcon from "@mui/icons-material/Edit";
-// import CloseIcon from '@mui/icons-material/Close';
+import { Delete, Edit } from "@mui/icons-material";
 import { withStyles } from "@material-ui/styles";
 import styles from "./styles/ContactStyles";
 import DeleteDialog from "./DeleteDialog";
 import EdidDialog from "./EditDialog";
 import { ListItemButton } from "@mui/material";
 
-function Contact({
-  classes,
-  name,
-  roll,
-  phoneNumber,
-  email,
-  tag,
-  officePhone,
-  color,
-  removeContact,
-  editContact,
-  _id,
-}) {
+const Contact = forwardRef(function (props, ref) {
+  const {
+    classes,
+    name,
+    roll,
+    phoneNumber,
+    email,
+    tag,
+    officePhone,
+    color,
+    removeContact,
+    editContact,
+    _id,
+  } = props;
   const [isDeleteDialogOpen, setDeleteDialog] = useState(false);
   const [isEditDialogOpen, setEditDialog] = useState(false);
-
   const [ShowEmail, setShowEmail] = UseToggleState(false);
+  const contactRef = useRef(null);
 
   const handleDelete = (e) => {
     e.stopPropagation();
@@ -54,6 +53,8 @@ function Contact({
   return (
     <>
       <ListItem
+        ref={contactRef}
+        data-contact-id={_id}
         style={{ backgroundColor: `#${color}` }}
         className={classes.Contact}
       >
@@ -79,6 +80,7 @@ function Contact({
         {ShowEmail ? (
           <>
             <ListItemText
+              ref={_id}
               primary={
                 <a href={`mailto:${email}`} className={classes.clickableLink}>
                   {email}
@@ -101,10 +103,10 @@ function Contact({
 
         <ListItemSecondaryAction className={classes.icons}>
           <IconButton className={classes.icon} onClick={handleDelete}>
-            <DeleteIcon />
+            <Delete />
           </IconButton>
           <IconButton className={classes.icon} onClick={handleEdit}>
-            <EditIcon aria-label="Edit" />
+            <Edit aria-label="Edit" />
           </IconButton>
         </ListItemSecondaryAction>
       </ListItem>
@@ -128,13 +130,6 @@ function Contact({
       />
     </>
   );
-}
+});
 
 export default withStyles(styles)(Contact);
-
-// const closeIcon=     <IconButton
-// onClick={setShowEmail}>
-//     <CloseIcon style={{ height:"20px"}}/>
-//       סגור
-
-// </IconButton>

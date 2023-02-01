@@ -13,7 +13,13 @@ const styles = {
   },
 };
 
-function ContactTable({ classes, contacts, removeContact, editContact }) {
+function ContactTable({
+  classes,
+  contacts,
+  removeContact,
+  editContact,
+  selectedContactRef,
+}) {
   const [filterByTag, setFilterByTag] = useState("all");
 
   const matyaContactList = [];
@@ -69,6 +75,7 @@ function ContactTable({ classes, contacts, removeContact, editContact }) {
         color={tag.color}
         contacts={tag.contacts}
         key={tag.tagName}
+        selectedContactRef={selectedContactRef}
       />
     </div>
   ));
@@ -81,11 +88,10 @@ function ContactTable({ classes, contacts, removeContact, editContact }) {
     <div className="ContactTable">
       <h2>טלפונים שימושיים</h2>
       <div className={classes.selectContainer}>
-        <InputLabel id="filter-tag-label">סנן לפי תוית</InputLabel>
+        <InputLabel id="filter-tag-label">סינון לפי תוית</InputLabel>
         <Select
           className={classes.selectTag}
           value={filterByTag}
-          label="סנן לפי תוית"
           labelId="filter-tag-label"
           onChange={handleTagChange}
         >
@@ -118,6 +124,7 @@ function ContactTable({ classes, contacts, removeContact, editContact }) {
                   color={tag.color}
                   contacts={tag.contacts}
                   key={tag.tagName}
+                  selectedContactRef={selectedContactRef}
                 />
               );
             }
@@ -127,21 +134,3 @@ function ContactTable({ classes, contacts, removeContact, editContact }) {
 }
 
 export default withStyles(styles)(ContactTable);
-
-{
-  /* <div>
-  <h3 style={{backgroundColor: '#c5626233'}}>פיקוח ומתי"א</h3>
-
-<ContactList color='c5626233' contacts={matyaContactList} removeContact={removeContact}  editContact={editContact} />
-
-<h3  style={{backgroundColor: '#a5e19a33'}}>עירייה</h3>
-<ContactList color='a5e19a33' contacts={cityContactList} removeContact={removeContact}  editContact={editContact} />
-
-<h3  style={{backgroundColor: '#dd80b333'}}>גני הילדים</h3>
-<ContactList color='dd80b333' contacts={kinderContactList} removeContact={removeContact}  editContact={editContact} />
-
-<h3  style={{backgroundColor: '#ccdd8033'}}>אחר</h3>
-<ContactList color='ccdd8033' contacts={otherList} removeContact={removeContact}  editContact={editContact} />
-
-    </div> */
-}
