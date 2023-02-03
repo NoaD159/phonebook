@@ -4,6 +4,7 @@ import NewContactForm from "./NewContactForm";
 import ContactTable from "./ContactTable";
 import SearchContact from "./SearchContact";
 import LoadingSpinner from "./LoadingSpinner";
+import { Paper } from "@material-ui/core";
 import { withStyles } from "@material-ui/styles";
 
 const styles = {
@@ -89,6 +90,12 @@ function ContactApp() {
     <div className="ContactApp">
       <h1>אנשי קשר- חולון</h1>
       {isLoading && <LoadingSpinner />}
+
+      <img
+        style={{ width: "50%" }}
+        src="https://blog.smoove.io/wp-content/uploads/2017/10/8people.jpg"
+      />
+
       <NewContactForm
         addContact={addContact}
         isSnackbarOpen={snackbarOpen}

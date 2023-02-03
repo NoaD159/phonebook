@@ -5,13 +5,13 @@ import {
   ListItem,
   ListItemText,
   IconButton,
+  Button,
 } from "@material-ui/core";
 import { Delete, Edit } from "@mui/icons-material";
 import { withStyles } from "@material-ui/styles";
 import styles from "./styles/ContactStyles";
 import DeleteDialog from "./DeleteDialog";
 import EdidDialog from "./EditDialog";
-import { ListItemButton } from "@mui/material";
 
 const Contact = forwardRef(function (props, ref) {
   const {
@@ -30,7 +30,7 @@ const Contact = forwardRef(function (props, ref) {
   const [isDeleteDialogOpen, setDeleteDialog] = useState(false);
   const [isEditDialogOpen, setEditDialog] = useState(false);
   const [ShowEmail, setShowEmail] = UseToggleState(false);
-  const contactRef = useRef(null);
+  const contactRef = useRef();
 
   const handleDelete = (e) => {
     e.stopPropagation();
@@ -53,7 +53,7 @@ const Contact = forwardRef(function (props, ref) {
   return (
     <>
       <ListItem
-        ref={contactRef}
+        ref={contactRef.current}
         data-contact-id={_id}
         style={{ backgroundColor: `#${color}` }}
         className={classes.Contact}
@@ -80,7 +80,6 @@ const Contact = forwardRef(function (props, ref) {
         {ShowEmail ? (
           <>
             <ListItemText
-              ref={_id}
               primary={
                 <a href={`mailto:${email}`} className={classes.clickableLink}>
                   {email}
@@ -92,13 +91,13 @@ const Contact = forwardRef(function (props, ref) {
             ></ListItemText>
           </>
         ) : (
-          <ListItemButton
+          <Button
             style={{ direction: "ltr" }}
             // className={classes.ShowEmailButton}
             onClick={setShowEmail}
           >
             {email.length > 3 ? "הצג מייל" : "אין מייל להציג"}
-          </ListItemButton>
+          </Button>
         )}
 
         <ListItemSecondaryAction className={classes.icons}>
