@@ -10,6 +10,7 @@ export default {
   contactNames: {
     textAlign: "center",
     marginRight: "1rem",
+    fontSize: "large",
   },
   contactEmail: {
     display: "block",
@@ -20,6 +21,7 @@ export default {
   },
   contactPhones: {
     position: "relative",
+    marginLeft: "5px",
   },
 
   icon: {

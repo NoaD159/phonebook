@@ -6,7 +6,10 @@ import {
   ListItemText,
   IconButton,
   Button,
+  Menu,
+  MenuItem,
 } from "@material-ui/core";
+import { ArrowDropDownCircleOutlined } from "@mui/icons-material";
 import { Delete, Edit } from "@mui/icons-material";
 import { withStyles } from "@material-ui/styles";
 import styles from "./styles/ContactStyles";
@@ -30,8 +33,13 @@ const Contact = forwardRef(function (props, ref) {
   const [isDeleteDialogOpen, setDeleteDialog] = useState(false);
   const [isEditDialogOpen, setEditDialog] = useState(false);
   const [ShowEmail, setShowEmail] = UseToggleState(false);
+  const [anchorEl, setAnchorEl] = useState(null);
   const contactRef = useRef();
 
+  function handleClick(e) {
+    setShowEmail();
+    setAnchorEl(e.currentTarget);
+  }
   const handleDelete = (e) => {
     e.stopPropagation();
     setDeleteDialog(true);
@@ -76,7 +84,7 @@ const Contact = forwardRef(function (props, ref) {
             </a>
           }
         ></ListItemText>
-
+        {/* 
         {ShowEmail ? (
           <>
             <ListItemText
@@ -98,7 +106,40 @@ const Contact = forwardRef(function (props, ref) {
           >
             {email.length > 3 ? "הצג מייל" : "אין מייל להציג"}
           </Button>
-        )}
+        )} */}
+        <Button
+          id="demo-positioned-button"
+          aria-controls={ShowEmail ? "demo-positioned-menu" : undefined}
+          aria-haspopup="true"
+          aria-expanded={ShowEmail ? "true" : undefined}
+          onClick={handleClick}
+        >
+          {ShowEmail ? "הסתר אימייל" : "הצג אימייל"}
+          <ArrowDropDownCircleOutlined />
+        </Button>
+        <Menu
+          id="demo-positioned-menu"
+          aria-labelledby="demo-positioned-button"
+          open={ShowEmail}
+          onClose={setShowEmail}
+          anchorEl={anchorEl}
+          anchorOrigin={{
+            vertical: "bottom",
+            horizontal: "left",
+          }}
+          transformOrigin={{
+            vertical: "top",
+            horizontal: "left",
+          }}
+          getContentAnchorEl={null}
+        >
+          <MenuItem>
+            {" "}
+            <a href={`mailto:${email}`} className={classes.clickableLink}>
+              {email}
+            </a>
+          </MenuItem>
+        </Menu>
 
         <ListItemSecondaryAction className={classes.icons}>
           <IconButton className={classes.icon} onClick={handleDelete}>
@@ -109,6 +150,7 @@ const Contact = forwardRef(function (props, ref) {
           </IconButton>
         </ListItemSecondaryAction>
       </ListItem>
+
       <DeleteDialog
         open={isDeleteDialogOpen}
         close={closeDeleteDialog}
