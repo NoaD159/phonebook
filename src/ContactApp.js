@@ -4,7 +4,6 @@ import NewContactForm from "./NewContactForm";
 import ContactTable from "./ContactTable";
 import SearchContact from "./SearchContact";
 import LoadingSpinner from "./LoadingSpinner";
-import { Paper } from "@material-ui/core";
 import { withStyles } from "@material-ui/styles";
 
 const styles = {
@@ -64,16 +63,7 @@ function ContactApp() {
     getData();
   };
 
-  // const addContact = async (newContact) => {
-  //   await axios.post(
-  //     `${process.env.REACT_APP_BASE_URL}/api/contacts`,
-  //     newContact
-  //   );
-  //   getData();
-  // };
-
   const removeContact = async (id) => {
-    // const updatedContacts = contacts.filter((contact) => contact._id !== id);
     await axios.delete(`${process.env.REACT_APP_BASE_URL}/api/contacts/${id}`);
     getData();
   };
@@ -112,8 +102,6 @@ function ContactApp() {
         editContact={editContact}
         selectedContactRef={selectedContactRef}
       />
-
-      {/* <DeleteDialog open={isDialogOpen} close={toggleDeleteDialog}/> */}
     </div>
   );
 }

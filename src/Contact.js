@@ -84,39 +84,21 @@ const Contact = forwardRef(function (props, ref) {
             </a>
           }
         ></ListItemText>
-        {/* 
-        {ShowEmail ? (
-          <>
-            <ListItemText
-              primary={
-                <a href={`mailto:${email}`} className={classes.clickableLink}>
-                  {email}
-                </a>
-              }
-              primaryTypographyProps={{
-                classes: { root: classes.contactEmail },
-              }}
-            ></ListItemText>
-          </>
-        ) : (
+        {email.length ? (
           <Button
-            style={{ direction: "ltr" }}
-            // className={classes.ShowEmailButton}
-            onClick={setShowEmail}
+            id="demo-positioned-button"
+            aria-controls={ShowEmail ? "demo-positioned-menu" : undefined}
+            aria-haspopup="true"
+            aria-expanded={ShowEmail ? "true" : undefined}
+            onClick={handleClick}
           >
-            {email.length > 3 ? "הצג מייל" : "אין מייל להציג"}
+            {ShowEmail ? "הסתר מייל" : "הצג מייל"}
+            <ArrowDropDownCircleOutlined />
           </Button>
-        )} */}
-        <Button
-          id="demo-positioned-button"
-          aria-controls={ShowEmail ? "demo-positioned-menu" : undefined}
-          aria-haspopup="true"
-          aria-expanded={ShowEmail ? "true" : undefined}
-          onClick={handleClick}
-        >
-          {ShowEmail ? "הסתר אימייל" : "הצג אימייל"}
-          <ArrowDropDownCircleOutlined />
-        </Button>
+        ) : (
+          <div className={classes.emptyEmail}></div>
+        )}
+
         <Menu
           id="demo-positioned-menu"
           aria-labelledby="demo-positioned-button"

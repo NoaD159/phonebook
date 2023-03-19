@@ -7,7 +7,6 @@ import styles from "./styles/SearchContactStyles";
 
 function SearchContact({ classes, contacts, selectedContactRef }) {
   const [options, setOptions] = useState([]);
-  const [isSearchOpen, setIsSearchOpen] = UseToggleState(false);
 
   useEffect(() => {
     setOptions(
@@ -21,7 +20,6 @@ function SearchContact({ classes, contacts, selectedContactRef }) {
 
   const handleSelectedContact = (e, value) => {
     // const contactRef = contacts.find((c) => c._id === value.id).contactRef;
-    // contactRef.current.scrollIntoView({ behavior: "smooth" });
 
     selectedContactRef.current = document.querySelector(
       `[data-contact-id="${value.id}"]`

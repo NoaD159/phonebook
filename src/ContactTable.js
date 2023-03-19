@@ -98,18 +98,12 @@ function ContactTable({
           <MenuItem className={classes.selectTag} value="all">
             הכל
           </MenuItem>
-          <MenuItem className={classes.selectTag} value="city">
-            עירייה ומנהל החינוך
-          </MenuItem>
-          <MenuItem className={classes.selectTag} value="matya">
-            פיקוח ומתי"א
-          </MenuItem>
-          <MenuItem className={classes.selectTag} value="kinder">
-            גננות
-          </MenuItem>
-          <MenuItem className={classes.selectTag} value="other">
-            אחר
-          </MenuItem>
+
+          {tagInfo.map((tag) => (
+            <MenuItem className={classes.selectTag} value={tag.tagName}>
+              {tag.head}
+            </MenuItem>
+          ))}
         </Select>
       </div>
 

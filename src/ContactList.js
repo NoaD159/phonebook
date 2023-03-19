@@ -12,14 +12,14 @@ function ContactList({
     <div className="ContactList">
       <Box>
         <List>
-          {contacts.map((c) => (
+          {contacts.map((contact) => (
             <Contact
               removeContact={removeContact}
               editContact={editContact}
               color={color}
-              key={c._id}
+              key={contact._id}
               ref={selectedContactRef}
-              {...c}
+              {...contact}
             />
           ))}
         </List>

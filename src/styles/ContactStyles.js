@@ -31,4 +31,7 @@ export default {
   clickableLink: {
     color: "#5ea6ba;",
   },
+  emptyEmail: {
+    width: "25%",
+  },
 };
