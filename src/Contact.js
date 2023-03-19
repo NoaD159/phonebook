@@ -34,7 +34,7 @@ const Contact = forwardRef(function (props, ref) {
   const [isEditDialogOpen, setEditDialog] = useState(false);
   const [ShowEmail, setShowEmail] = UseToggleState(false);
   const [anchorEl, setAnchorEl] = useState(null);
-  const contactRef = useRef();
+  // const contactRef = useRef();
 
   function handleClick(e) {
     setShowEmail();
@@ -61,7 +61,7 @@ const Contact = forwardRef(function (props, ref) {
   return (
     <>
       <ListItem
-        ref={contactRef.current}
+        ref={ref.current}
         data-contact-id={_id}
         style={{ backgroundColor: `#${color}` }}
         className={classes.Contact}
