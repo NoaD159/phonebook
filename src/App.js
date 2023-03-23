@@ -2,10 +2,10 @@ import { useEffect } from "react";
 import { Route, Switch, useHistory, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import axios from "axios";
-import AccessPage from "./AccessPage";
-import ContactApp from "./ContactApp";
-import WithAuth from "./WithAuth";
-import "./App.css";
+import AccessPage from "./pages/AccessPage";
+import ContactApp from "./pages/ContactApp";
+import WithAuth from "./components/WithAuth";
+import "./styles/App.css";
 
 function App({ isAuthenticated, login, logout }) {
   // const [isAuthenticated, setIsAuthenticated] = useState(false);

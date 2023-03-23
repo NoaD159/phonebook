@@ -1,9 +1,10 @@
 import { useState, useEffect, useRef } from "react";
+import useToggle from "../hooks/UseToggleState";
 import axios from "axios";
-import NewContactForm from "./NewContactForm";
-import ContactTable from "./ContactTable";
-import SearchContact from "./SearchContact";
-import LoadingSpinner from "./LoadingSpinner";
+import NewContactForm from "../components/NewContactForm";
+import ContactTable from "../components/ContactTable";
+import SearchContact from "../components/SearchContact";
+import LoadingSpinner from "../components/LoadingSpinner";
 import { withStyles } from "@material-ui/styles";
 
 const styles = {
@@ -21,7 +22,7 @@ const styles = {
 function ContactApp() {
   const [contacts, setContacts] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  const [snackbarOpen, setSnackbarOpen] = useState(false);
+  const [snackbarOpen, setSnackbarOpen] = useToggle(false);
   const [snackbarError, setSnackbarError] = useState("");
 
   const selectedContactRef = useRef(null);
@@ -52,10 +53,10 @@ function ContactApp() {
     } catch (err) {
       if (err.response.data.code === 11000) {
         setSnackbarError("שם זה כבר קיים במערכת");
-        setSnackbarOpen(true);
+        setSnackbarOpen();
       } else {
         setSnackbarError("משהו השתבש");
-        setSnackbarOpen(true);
+        setSnackbarOpen();
       }
       console.log("ERR", err.response.data);
     }
@@ -82,6 +83,7 @@ function ContactApp() {
       {isLoading && <LoadingSpinner />}
 
       <img
+        alt="contacts-img"
         style={{ width: "50%" }}
         src="https://blog.smoove.io/wp-content/uploads/2017/10/8people.jpg"
       />

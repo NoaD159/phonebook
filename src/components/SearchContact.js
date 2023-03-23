@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
-import UseToggleState from "./hooks/UseToggleState";
+import UseToggleState from "../hooks/UseToggleState";
 
 import { Autocomplete, TextField } from "@mui/material";
 import { withStyles } from "@material-ui/styles";
-import styles from "./styles/SearchContactStyles";
+import styles from "../styles/SearchContactStyles";
 
 function SearchContact({ classes, contacts, selectedContactRef }) {
   const [options, setOptions] = useState([]);

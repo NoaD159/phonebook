@@ -1,37 +1,53 @@
 export default {
   Contact: {
     display: "flex",
-    margin: "0.5rem",
-    // padding: "1.1rem 3rem",
+    margin: "0.5em 0",
     height: "87px",
     justifyContent: "space-between",
     alignItems: "center",
+    padding: " 0 ",
   },
   contactNames: {
     textAlign: "center",
-    marginRight: "1rem",
+
     fontSize: "large",
+    // display: "inline-block",
+    width: "80%",
+    marginRight: "2rem",
+    marginTop: "1rem",
+    marginLeft: "30px",
+  },
+  name: { width: "70%", marginRight: "1rem" },
+  roll: {
+    width: "65%",
+    marginRight: "3rem",
+    marginTop: "0",
+    textAlign: "center",
   },
   contactEmail: {
     display: "block",
     fontSize: "0.9rem",
   },
   showEmailButton: {
-    backgroundColor: "green",
+    marginRight: "0.5em",
+    width: "27%",
+    padding: "0",
   },
   contactPhones: {
-    position: "relative",
-    marginLeft: "5px",
+    // position: "fixed",
+    // marginLeft: "5px",
+    display: "inline",
   },
-
+  icons: { width: "20%", marginRight: "-2em" },
   icon: {
     padding: "0",
-    margin: "2px 3px",
+    margin: "2px 1px",
   },
+
   clickableLink: {
     color: "#5ea6ba;",
   },
   emptyEmail: {
-    width: "25%",
+    width: "27%",
   },
 };

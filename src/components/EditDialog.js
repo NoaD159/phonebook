@@ -10,26 +10,14 @@ import {
   MenuItem,
 } from "@material-ui/core";
 import { withStyles } from "@material-ui/styles";
-import styles from "./styles/EditDialogStyles";
+import styles from "../styles/EditDialogStyles";
 import { Zoom } from "@material-ui/core";
 
 const Transition = React.forwardRef((props, ref) => {
   return <Zoom timeout={2000} ref={ref} {...props} />;
 });
 
-function EdidDialog({
-  classes,
-  open,
-  close,
-  editContact,
-  name,
-  id,
-  tag,
-  roll,
-  phoneNumber,
-  email,
-  officePhone,
-}) {
+function EdidDialog({ classes, open, close, editContact, id }) {
   const [contact, setContact] = useState({
     name: "",
     roll: "",
@@ -38,6 +26,11 @@ function EdidDialog({
     email: "",
     tag: "",
   });
+  const [phoneNumberError, setPhoneNumberError] = useState(false);
+  const [officePhoneError, setOfficePhoneError] = useState(false);
+
+  const israeliPhoneNumberRegex =
+    /^(?:\+972|0)(5[^7]|[2-4]|[8-9]|7[0-9])[0-9]{7}$/;
 
   useEffect(() => {
     async function getData() {
@@ -48,6 +41,32 @@ function EdidDialog({
     }
     getData();
   }, [open]);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      if (contact.phoneNumber) {
+        if (!israeliPhoneNumberRegex.test(contact.phoneNumber)) {
+          setPhoneNumberError(true);
+        } else {
+          setPhoneNumberError(false);
+        }
+      }
+    }, 1000);
+    return () => clearTimeout(timer);
+  }, [contact.phoneNumber]);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      if (contact.officePhone) {
+        if (!israeliPhoneNumberRegex.test(contact.officePhone)) {
+          setOfficePhoneError(true);
+        } else {
+          setOfficePhoneError(false);
+        }
+      }
+    }, 1000);
+    return () => clearTimeout(timer);
+  }, [contact.officePhone]);
 
   const handleChange = (e) => {
     setContact({ ...contact, [e.target.name]: e.target.value });
@@ -60,7 +79,12 @@ function EdidDialog({
   };
 
   return (
-    <Dialog TransitionComponent={Transition} open={open} onClose={close}>
+    <Dialog
+      className={classes.editDialog}
+      TransitionComponent={Transition}
+      open={open}
+      onClose={close}
+    >
       <DialogTitle disableTypography={true} className={classes.editContactHead}>
         עריכת איש קשר
       </DialogTitle>
@@ -70,6 +94,7 @@ function EdidDialog({
           required
           className={classes.editContactInput}
           type="text"
+          inputProps={{ maxLength: 20 }}
           id="name"
           name="name"
           label="שם"
@@ -82,6 +107,7 @@ function EdidDialog({
           required
           className={classes.editContactInput}
           type="text"
+          inputProps={{ maxLength: 20 }}
           id="roll"
           name="roll"
           label="תפקיד"
@@ -93,29 +119,37 @@ function EdidDialog({
           fullWidth
           className={classes.editContactInput}
           type="text"
+          inputProps={{ maxLength: 15 }}
           id="phone"
           name="phoneNumber"
           label="מספר טלפון"
           InputLabelProps={{ classes: { root: classes.editContactLabel } }}
           value={contact.phoneNumber}
           onChange={handleChange}
+          error={phoneNumberError}
+          helperText={phoneNumberError && "מספר טלפון לא תקין"}
         />
+
         <TextField
           fullWidth
           className={classes.editContactInput}
           type="text"
+          inputProps={{ maxLength: 15 }}
           id="officePhone"
           name="officePhone"
           label="טלפון במשרד"
           InputLabelProps={{ classes: { root: classes.editContactLabel } }}
           value={contact.officePhone}
           onChange={handleChange}
+          error={officePhoneError}
+          helperText={officePhoneError && "מספר טלפון לא תקין"}
         />
 
         <TextField
           fullWidth
           className={classes.editContactInput}
           type="email"
+          inputProps={{ maxLength: 25 }}
           id="email"
           name="email"
           label="כתובת מייל"

@@ -1,13 +1,13 @@
 import React from "react";
 import { MenuItem, Select, TextField } from "@material-ui/core";
-import { useState } from "react";
-import UseToggleState from "./hooks/UseToggleState";
+import { useState, useEffect } from "react";
+import UseToggleState from "../hooks/UseToggleState";
 
 import { Snackbar } from "@material-ui/core";
 import { Cancel } from "@material-ui/icons";
 import { IconButton } from "@material-ui/core";
 import { withStyles } from "@material-ui/styles";
-import styles from "./styles/NewContactFormStyles";
+import styles from "../styles/NewContactFormStyles";
 
 function NewContactForm({
   addContact,
@@ -26,6 +26,37 @@ function NewContactForm({
   };
   const [newContact, setNewContact] = useState(newContactResetForm);
   const [isFormOpen, toggleForm] = UseToggleState(false);
+  const [phoneNumberError, setPhoneNumberError] = useState(false);
+  const [officePhoneError, setOfficePhoneError] = useState(false);
+
+  const israeliPhoneNumberRegex =
+    /^(?:\+972|0)(5[^7]|[2-4]|[8-9]|7[0-9])[0-9]{7}$/;
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      if (newContact.phoneNumber) {
+        if (!israeliPhoneNumberRegex.test(newContact.phoneNumber)) {
+          setPhoneNumberError(true);
+        } else {
+          setPhoneNumberError(false);
+        }
+      }
+    }, 1000);
+    return () => clearTimeout(timer);
+  }, [newContact.phoneNumber]);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      if (newContact.officePhone) {
+        if (!israeliPhoneNumberRegex.test(newContact.officePhone)) {
+          setOfficePhoneError(true);
+        } else {
+          setOfficePhoneError(false);
+        }
+      }
+    }, 1000);
+    return () => clearTimeout(timer);
+  }, [newContact.officePhone]);
 
   const handleChange = (e) => {
     setNewContact({ ...newContact, [e.target.name]: e.target.value });
@@ -33,9 +64,7 @@ function NewContactForm({
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
-
     addContact(newContact);
-
     setNewContact(newContactResetForm);
   };
 
@@ -48,14 +77,14 @@ function NewContactForm({
         open={isSnackbarOpen}
         className={classes.snackbar}
         message={snackbarError}
-        onClose={() => setSnackbarOpen(false)}
+        onClose={() => setSnackbarOpen()}
         action={
           <React.Fragment>
             <IconButton
               size="small"
               aria-label="close"
               className={classes.cancelSnackbar}
-              onClick={() => setSnackbarOpen(false)}
+              onClick={() => setSnackbarOpen()}
             >
               <Cancel fontSize="small" />
             </IconButton>
@@ -70,6 +99,7 @@ function NewContactForm({
               required
               className={classes.newContactInput}
               type="text"
+              inputProps={{ maxLength: 20 }}
               id="name"
               name="name"
               label="שם"
@@ -83,6 +113,7 @@ function NewContactForm({
               required
               className={classes.newContactInput}
               type="text"
+              inputProps={{ maxLength: 20 }}
               id="roll"
               name="roll"
               label="תפקיד"
@@ -96,24 +127,30 @@ function NewContactForm({
               className={classes.newContactInput}
               inputMode="decimal"
               type="text"
+              inputProps={{ maxLength: 11 }}
               id="phone"
               name="phoneNumber"
               label="מספר טלפון"
               InputLabelProps={{ classes: { root: classes.newContactLabel } }}
               value={newContact.phoneNumber}
               onChange={handleChange}
+              error={phoneNumberError}
+              helperText={phoneNumberError && "מספר טלפון לא תקין"}
             ></TextField>
 
             <TextField
               fullWidth
               className={classes.newContactInput}
               type="text"
+              inputProps={{ maxLength: 11 }}
               id="officePhone"
               name="officePhone"
               label="טלפון במשרד"
               InputLabelProps={{ classes: { root: classes.newContactLabel } }}
               value={newContact.officePhone}
               onChange={handleChange}
+              error={officePhoneError}
+              helperText={officePhoneError && "מספר טלפון לא תקין"}
             ></TextField>
 
             <TextField
@@ -122,6 +159,7 @@ function NewContactForm({
               type="email"
               id="email"
               name="email"
+              inputProps={{ maxLength: 25 }}
               label="כתובת מייל"
               InputLabelProps={{ classes: { root: classes.newContactLabel } }}
               value={newContact.email}
@@ -143,21 +181,7 @@ function NewContactForm({
             <MenuItem value="kinder">גננות</MenuItem>
             <MenuItem value="other">אחר</MenuItem>
           </Select>
-          {/* <Button 
-className="submitButton"
-onClick={e=>{
-e.preventDefault();
-addContact(newContact);
-setNewContact({
-name:"",
-roll:"",
-phoneNumber:"",
-officePhone:"",
-email:"",
-tag:"city",
-})
-}}
->הוסף איש קשר</Button> */}
+
           <button type="submit" className={classes.submitButton}>
             הוסף איש קשר
           </button>

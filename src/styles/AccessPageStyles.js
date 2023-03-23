@@ -23,8 +23,6 @@ export default {
     display: "flex",
     border: "2px solid gray",
     borderRadius: "5px",
-    // "-webkit-justify-content": "space-around",
-    // "-webkit-flex-wrap": "wrap",
     justifyContent: "space-around",
     flexWrap: "wrap",
     margin: "0 auto",
@@ -36,13 +34,7 @@ export default {
     color: "#3e403f",
     textAlign: "center",
   },
-  //   formField: {},
-  //   inputItem: {
-  //     background: " #fff",
-  //     color: " #333",
-  //     padding: "14.5px 0px 15px 9px",
-  //     borderRadius: "5px 0px 0px 5px",
-  //   },
+
   formInput: {
     fontSize: "16px",
     height: "2rem",

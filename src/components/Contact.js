@@ -1,5 +1,5 @@
 import { useState, useRef, forwardRef } from "react";
-import UseToggleState from "./hooks/UseToggleState";
+import UseToggleState from "../hooks/UseToggleState";
 import {
   ListItemSecondaryAction,
   ListItem,
@@ -12,7 +12,7 @@ import {
 import { ArrowDropDownCircleOutlined } from "@mui/icons-material";
 import { Delete, Edit } from "@mui/icons-material";
 import { withStyles } from "@material-ui/styles";
-import styles from "./styles/ContactStyles";
+import styles from "../styles/ContactStyles";
 import DeleteDialog from "./DeleteDialog";
 import EdidDialog from "./EditDialog";
 
@@ -68,8 +68,10 @@ const Contact = forwardRef(function (props, ref) {
       >
         <ListItemText
           primaryTypographyProps={{ classes: { root: classes.contactNames } }}
-          primary={name}
-          secondary={roll}
+          // primary={name}
+          // secondary={roll}
+          primary={<span className={classes.name}>{name}</span>}
+          secondary={<p className={classes.roll}>{roll}</p>}
         ></ListItemText>
         <ListItemText
           primaryTypographyProps={{ classes: { root: classes.contactPhones } }}
@@ -91,6 +93,7 @@ const Contact = forwardRef(function (props, ref) {
             aria-haspopup="true"
             aria-expanded={ShowEmail ? "true" : undefined}
             onClick={handleClick}
+            className={classes.showEmailButton}
           >
             {ShowEmail ? "הסתר מייל" : "הצג מייל"}
             <ArrowDropDownCircleOutlined />
@@ -98,7 +101,6 @@ const Contact = forwardRef(function (props, ref) {
         ) : (
           <div className={classes.emptyEmail}></div>
         )}
-
         <Menu
           id="demo-positioned-menu"
           aria-labelledby="demo-positioned-button"
@@ -122,7 +124,6 @@ const Contact = forwardRef(function (props, ref) {
             </a>
           </MenuItem>
         </Menu>
-
         <ListItemSecondaryAction className={classes.icons}>
           <IconButton className={classes.icon} onClick={handleDelete}>
             <Delete />
@@ -131,26 +132,26 @@ const Contact = forwardRef(function (props, ref) {
             <Edit aria-label="Edit" />
           </IconButton>
         </ListItemSecondaryAction>
-      </ListItem>
 
-      <DeleteDialog
-        open={isDeleteDialogOpen}
-        close={closeDeleteDialog}
-        removeContact={removeContact}
-        deleteId={_id}
-      />
-      <EdidDialog
-        open={isEditDialogOpen}
-        close={closeEditDialog}
-        editContact={editContact}
-        id={_id}
-        name={name}
-        roll={roll}
-        tag={tag}
-        phoneNumber={phoneNumber}
-        email={email}
-        officePhone={officePhone}
-      />
+        <DeleteDialog
+          open={isDeleteDialogOpen}
+          close={closeDeleteDialog}
+          removeContact={removeContact}
+          deleteId={_id}
+        />
+        <EdidDialog
+          open={isEditDialogOpen}
+          close={closeEditDialog}
+          editContact={editContact}
+          id={_id}
+          name={name}
+          roll={roll}
+          tag={tag}
+          phoneNumber={phoneNumber}
+          email={email}
+          officePhone={officePhone}
+        />
+      </ListItem>
     </>
   );
 });

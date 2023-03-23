@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { withStyles } from "@material-ui/styles";
-import styles from "./styles/AccessPageStyles";
+import styles from "../styles/AccessPageStyles";
 import { NavLink } from "react-router-dom";
 
 const correctPassword = process.env.REACT_APP_ACCESS;
