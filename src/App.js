@@ -28,7 +28,7 @@ function App({ isAuthenticated, login, logout }) {
 
   return (
     <div className="App">
-      <button onClick={() => logout()}>logout</button>
+      {/* <button onClick={() => logout()}>logout</button> */}
       <Switch>
         <Route
           exact

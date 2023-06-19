@@ -1,4 +1,4 @@
-export default {
+const styles = {
   Contact: {
     display: "flex",
     margin: "0.5em 0",
@@ -9,9 +9,7 @@ export default {
   },
   contactNames: {
     textAlign: "center",
-
     fontSize: "large",
-    // display: "inline-block",
     width: "80%",
     marginRight: "2rem",
     marginTop: "1rem",
@@ -34,11 +32,9 @@ export default {
     padding: "0",
   },
   contactPhones: {
-    // position: "fixed",
-    // marginLeft: "5px",
     display: "inline",
   },
-  icons: { width: "20%", marginRight: "-2em" },
+  icons: { width: "20%", marginRight: "-1.5em" },
   icon: {
     padding: "0",
     margin: "2px 1px",
@@ -51,3 +47,4 @@ export default {
     width: "27%",
   },
 };
+export default styles;

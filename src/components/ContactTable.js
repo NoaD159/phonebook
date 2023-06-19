@@ -1,17 +1,8 @@
 import { useState } from "react";
 import { Select, MenuItem, InputLabel } from "@material-ui/core";
 import ContactList from "./ContactList";
+import styles from "../styles/ContactTableStyles";
 import { withStyles } from "@material-ui/styles";
-
-const styles = {
-  selectContainer: {
-    margin: "1rem 1rem",
-    marginBottom: "2rem",
-  },
-  selectTag: {
-    fontFamily: "'Varela Round', sans-serif",
-  },
-};
 
 function ContactTable({
   classes,
@@ -85,7 +76,7 @@ function ContactTable({
   };
 
   return (
-    <div className="ContactTable">
+    <div className={classes.ContactTable}>
       <h2>טלפונים שימושיים</h2>
       <div className={classes.selectContainer}>
         <InputLabel id="filter-tag-label">סינון לפי תוית</InputLabel>
@@ -95,12 +86,16 @@ function ContactTable({
           labelId="filter-tag-label"
           onChange={handleTagChange}
         >
-          <MenuItem className={classes.selectTag} value="all">
+          <MenuItem className={classes.selectTag} value="all" key="all">
             הכל
           </MenuItem>
 
           {tagInfo.map((tag) => (
-            <MenuItem className={classes.selectTag} value={tag.tagName}>
+            <MenuItem
+              className={classes.selectTag}
+              value={tag.tagName}
+              key={tag.tagName}
+            >
               {tag.head}
             </MenuItem>
           ))}

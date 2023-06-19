@@ -84,7 +84,7 @@ function ContactApp() {
 
       <img
         alt="contacts-img"
-        style={{ width: "50%" }}
+        style={{ width: "30%" }}
         src="https://blog.smoove.io/wp-content/uploads/2017/10/8people.jpg"
       />
 

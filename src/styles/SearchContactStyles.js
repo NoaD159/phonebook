@@ -1,12 +1,21 @@
-export default {
+const styles = {
+  SearchContact: {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    flexDirection: "column",
+  },
   searchHead: {
     borderBottom: "1px solid white",
     color: "#ac89c1",
     fontSize: "20px",
-    fontHeight: "600",
     lineHeight: "24px",
     padding: "10px",
     textAlign: "center",
+    // display: "inline-block",
+    // justifyContent: "center",
+    // alignItems: "center",
+    width: "350px",
     background: "#e2d1ec",
     cursor: "pointer",
     "&:hover": {
@@ -17,13 +26,13 @@ export default {
   autocomplete: {
     borderRadius: "15px",
     margin: "1rem",
-    width: "90%",
+    width: "350px",
   },
-  searchContact: {
+  searchTextField: {
     borderRadius: "15px",
   },
   searchContactLabel: {
-    // direction: "rtl",
-    right: "-15%",
+    // right: "0",
   },
 };
+export default styles;

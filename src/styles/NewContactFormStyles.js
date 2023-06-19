@@ -1,13 +1,14 @@
-export default {
+const styles = {
   NewContactForm: {
     background: "lavender",
     border: " 1px solid #dedede",
     display: " flex",
     flexDirection: "column",
     justifyContent: "space-around",
+    // alignItems: "center",
     margin: "0 auto",
     maxWidth: "500px",
-    padding: " 30px 50px",
+    padding: "30px 50px",
   },
 
   newContactHead: {
@@ -19,6 +20,11 @@ export default {
     padding: "10px",
     textAlign: "center",
     background: "lavender",
+    width: "350px",
+    display: "inline-block",
+    justifyContent: "center",
+    alignItems: "center",
+
     cursor: "pointer",
     "&:hover": {
       background: "rgba(190, 190, 241,0.6)",
@@ -57,3 +63,4 @@ export default {
     position: "fixed",
   },
 };
+export default styles;

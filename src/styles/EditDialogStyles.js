@@ -1,4 +1,4 @@
-export default {
+const styles = {
   editDialog: {
     width: "100%",
   },
@@ -49,3 +49,4 @@ export default {
     },
   },
 };
+export default styles;

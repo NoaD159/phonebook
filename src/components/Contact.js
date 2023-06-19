@@ -1,4 +1,4 @@
-import { useState, useRef, forwardRef } from "react";
+import { useState, forwardRef } from "react";
 import UseToggleState from "../hooks/UseToggleState";
 import {
   ListItemSecondaryAction,
@@ -34,7 +34,6 @@ const Contact = forwardRef(function (props, ref) {
   const [isEditDialogOpen, setEditDialog] = useState(false);
   const [ShowEmail, setShowEmail] = UseToggleState(false);
   const [anchorEl, setAnchorEl] = useState(null);
-  // const contactRef = useRef();
 
   function handleClick(e) {
     setShowEmail();
@@ -68,8 +67,6 @@ const Contact = forwardRef(function (props, ref) {
       >
         <ListItemText
           primaryTypographyProps={{ classes: { root: classes.contactNames } }}
-          // primary={name}
-          // secondary={roll}
           primary={<span className={classes.name}>{name}</span>}
           secondary={<p className={classes.roll}>{roll}</p>}
         ></ListItemText>
@@ -124,14 +121,6 @@ const Contact = forwardRef(function (props, ref) {
             </a>
           </MenuItem>
         </Menu>
-        <ListItemSecondaryAction className={classes.icons}>
-          <IconButton className={classes.icon} onClick={handleDelete}>
-            <Delete />
-          </IconButton>
-          <IconButton className={classes.icon} onClick={handleEdit}>
-            <Edit aria-label="Edit" />
-          </IconButton>
-        </ListItemSecondaryAction>
 
         <DeleteDialog
           open={isDeleteDialogOpen}
@@ -151,6 +140,14 @@ const Contact = forwardRef(function (props, ref) {
           email={email}
           officePhone={officePhone}
         />
+        <ListItemSecondaryAction className={classes.icons}>
+          <IconButton className={classes.icon} onClick={handleDelete}>
+            <Delete />
+          </IconButton>
+          <IconButton className={classes.icon} onClick={handleEdit}>
+            <Edit aria-label="Edit" />
+          </IconButton>
+        </ListItemSecondaryAction>
       </ListItem>
     </>
   );

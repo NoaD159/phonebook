@@ -1,4 +1,4 @@
-export default {
+const styles = {
   root: {
     backgroundImage: " linear-gradient(-225deg, #E3FDF5 0%, #FFE6FA 100%)",
     backgroundImage: "linear-gradient(to top, #a8edea 0%, #fed6e3 100%)",
@@ -63,3 +63,4 @@ export default {
     marginLeft: " 2%",
   },
 };
+export default styles;

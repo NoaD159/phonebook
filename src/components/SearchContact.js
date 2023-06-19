@@ -1,6 +1,4 @@
 import React, { useState, useEffect } from "react";
-import UseToggleState from "../hooks/UseToggleState";
-
 import { Autocomplete, TextField } from "@mui/material";
 import { withStyles } from "@material-ui/styles";
 import styles from "../styles/SearchContactStyles";
@@ -19,8 +17,6 @@ function SearchContact({ classes, contacts, selectedContactRef }) {
   }, [contacts]);
 
   const handleSelectedContact = (e, value) => {
-    // const contactRef = contacts.find((c) => c._id === value.id).contactRef;
-
     selectedContactRef.current = document.querySelector(
       `[data-contact-id="${value.id}"]`
     );
@@ -31,7 +27,7 @@ function SearchContact({ classes, contacts, selectedContactRef }) {
   };
 
   return (
-    <div>
+    <div className={classes.SearchContact}>
       <h2 className={classes.searchHead}>חיפוש איש קשר</h2>
       {contacts.length !== 0 && (
         <Autocomplete
@@ -40,7 +36,7 @@ function SearchContact({ classes, contacts, selectedContactRef }) {
           onChange={handleSelectedContact}
           renderInput={(params) => (
             <TextField
-              className={classes.searchContact}
+              className={classes.searchTextField}
               {...params}
               label="בחר איש קשר"
               InputLabelProps={{
