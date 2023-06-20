@@ -19,6 +19,7 @@ function ContactList({
               color={color}
               key={contact._id}
               ref={selectedContactRef}
+              data-contact-id={contact._id}
               {...contact}
             />
           ))}

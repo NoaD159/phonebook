@@ -3,7 +3,7 @@ import { Autocomplete, TextField } from "@mui/material";
 import { withStyles } from "@material-ui/styles";
 import styles from "../styles/SearchContactStyles";
 
-function SearchContact({ classes, contacts, selectedContactRef }) {
+function SearchContact({ classes, contacts }) {
   const [options, setOptions] = useState([]);
 
   useEffect(() => {
@@ -17,13 +17,16 @@ function SearchContact({ classes, contacts, selectedContactRef }) {
   }, [contacts]);
 
   const handleSelectedContact = (e, value) => {
-    selectedContactRef.current = document.querySelector(
+    const selectedContactElement = document.querySelector(
       `[data-contact-id="${value.id}"]`
     );
-    selectedContactRef.current.scrollIntoView({
-      behavior: "smooth",
-      block: "start",
-    });
+    if (selectedContactElement) {
+      selectedContactElement.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+        inline: "nearest",
+      });
+    }
   };
 
   return (
