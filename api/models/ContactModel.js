@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;
 
 const ContactSchema = new Schema({
   name: { type: String, required: true, trim: true, unique: true },
-  roll: { type: String, required: true },
+  role: { type: String, required: true },
   email: { type: String },
   tag: {
     type: String,

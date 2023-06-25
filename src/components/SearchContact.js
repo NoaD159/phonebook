@@ -1,32 +1,31 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Autocomplete, TextField } from "@mui/material";
 import { withStyles } from "@material-ui/styles";
 import styles from "../styles/SearchContactStyles";
 
 function SearchContact({ classes, contacts }) {
   const [options, setOptions] = useState([]);
+  const selectedContactRef = useRef(null);
 
   useEffect(() => {
     setOptions(
       contacts.map((contact) => ({
         value: contact.name,
-        label: `${contact.name} - ${contact.roll}`,
+        label: `${contact.name} - ${contact.role}`,
         id: contact._id,
       }))
     );
   }, [contacts]);
 
   const handleSelectedContact = (e, value) => {
-    const selectedContactElement = document.querySelector(
+    selectedContactRef.current = document.querySelector(
       `[data-contact-id="${value.id}"]`
     );
-    if (selectedContactElement) {
-      selectedContactElement.scrollIntoView({
-        behavior: "smooth",
-        block: "start",
-        inline: "nearest",
-      });
-    }
+
+    selectedContactRef.current.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
   };
 
   return (
@@ -43,6 +42,7 @@ function SearchContact({ classes, contacts }) {
               {...params}
               label="בחר איש קשר"
               InputLabelProps={{
+                shrink: true,
                 classes: { root: classes.searchContactLabel },
               }}
               variant="outlined"

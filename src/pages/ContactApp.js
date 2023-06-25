@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import useToggle from "../hooks/UseToggleState";
 import axios from "axios";
 import NewContactForm from "../components/NewContactForm";
@@ -24,8 +24,6 @@ function ContactApp() {
   const [isLoading, setIsLoading] = useState(false);
   const [snackbarOpen, setSnackbarOpen] = useToggle(false);
   const [snackbarError, setSnackbarError] = useState("");
-
-  const selectedContactRef = useRef(null);
 
   const getData = async () => {
     try {
@@ -55,7 +53,7 @@ function ContactApp() {
         setSnackbarError("שם זה כבר קיים במערכת");
         setSnackbarOpen();
       } else {
-        setSnackbarError("משהו השתבש");
+        setSnackbarError("משהו השתבש במילוי הטופס");
         setSnackbarOpen();
       }
       console.log("ERR", err.response.data);
@@ -84,7 +82,7 @@ function ContactApp() {
 
       <img
         alt="contacts-img"
-        style={{ width: "30%" }}
+        style={{ maxWidth: "350px" }}
         src="https://blog.smoove.io/wp-content/uploads/2017/10/8people.jpg"
       />
 
@@ -95,14 +93,13 @@ function ContactApp() {
         snackbarError={snackbarError}
       />
       <SearchContact
-        selectedContactRef={selectedContactRef}
+        // selectedContactRef={selectedContactRef}
         contacts={contacts}
       />
       <ContactTable
         contacts={contacts}
         removeContact={removeContact}
         editContact={editContact}
-        selectedContactRef={selectedContactRef}
       />
     </div>
   );

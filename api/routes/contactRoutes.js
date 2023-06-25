@@ -11,11 +11,11 @@ router
   })
   .post(async (req, res) => {
     // const newContact = new Contact(req.body);
-    const { name, tag, roll, email, phoneNumber, officePhone } = req.body;
+    const { name, tag, role, email, phoneNumber, officePhone } = req.body;
     try {
       const newContact = new Contact({
         name,
-        roll,
+        role,
         tag,
         email,
         phoneNumber,
@@ -39,13 +39,10 @@ router
 
   .put(async (req, res) => {
     const { id } = req.params;
-
-    // const contact = req.body;
-    // const updateContact = Contact.findByIdAndUpdate(id, req.body.contact);
-    const { name, tag, roll, email, phoneNumber, officePhone } = req.body;
+    const { name, tag, role, email, phoneNumber, officePhone } = req.body;
     const contact = await Contact.findById(id);
     contact.name = name;
-    contact.roll = roll;
+    contact.role = role;
     contact.tag = tag;
     contact.email = email;
     contact.phoneNumber = phoneNumber;
@@ -56,7 +53,7 @@ router
   })
   .delete(async (req, res) => {
     const { id } = req.params;
-    console.log(id);
+
     await Contact.findByIdAndDelete(id);
     res.json({ message: "Contact deleted" });
   });

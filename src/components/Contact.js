@@ -1,4 +1,4 @@
-import { useState, forwardRef } from "react";
+import { useState } from "react";
 import UseToggleState from "../hooks/UseToggleState";
 import {
   ListItemSecondaryAction,
@@ -8,6 +8,7 @@ import {
   Button,
   Menu,
   MenuItem,
+  Typography,
 } from "@material-ui/core";
 import { ArrowDropDownCircleOutlined } from "@mui/icons-material";
 import { Delete, Edit } from "@mui/icons-material";
@@ -16,11 +17,11 @@ import styles from "../styles/ContactStyles";
 import DeleteDialog from "./DeleteDialog";
 import EdidDialog from "./EditDialog";
 
-const Contact = forwardRef(function (props, ref) {
+const Contact = function (props) {
   const {
     classes,
     name,
-    roll,
+    role,
     phoneNumber,
     email,
     tag,
@@ -60,15 +61,18 @@ const Contact = forwardRef(function (props, ref) {
   return (
     <>
       <ListItem
-        ref={ref.current}
-        data-contact-id={_id}
         style={{ backgroundColor: `#${color}` }}
         className={classes.Contact}
+        data-contact-id={_id}
       >
         <ListItemText
           primaryTypographyProps={{ classes: { root: classes.contactNames } }}
           primary={<span className={classes.name}>{name}</span>}
-          secondary={<p className={classes.roll}>{roll}</p>}
+          secondary={
+            <Typography variant="body2" className={classes.role}>
+              {role}
+            </Typography>
+          }
         ></ListItemText>
         <ListItemText
           primaryTypographyProps={{ classes: { root: classes.contactPhones } }}
@@ -134,7 +138,7 @@ const Contact = forwardRef(function (props, ref) {
           editContact={editContact}
           id={_id}
           name={name}
-          roll={roll}
+          role={role}
           tag={tag}
           phoneNumber={phoneNumber}
           email={email}
@@ -151,6 +155,6 @@ const Contact = forwardRef(function (props, ref) {
       </ListItem>
     </>
   );
-});
+};
 
 export default withStyles(styles)(Contact);

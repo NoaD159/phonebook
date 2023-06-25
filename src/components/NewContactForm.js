@@ -2,7 +2,6 @@ import React from "react";
 import { MenuItem, Select, TextField } from "@material-ui/core";
 import { useState, useEffect } from "react";
 import UseToggleState from "../hooks/UseToggleState";
-
 import { Snackbar } from "@material-ui/core";
 import { Cancel } from "@material-ui/icons";
 import { IconButton } from "@material-ui/core";
@@ -18,7 +17,7 @@ function NewContactForm({
 }) {
   const newContactResetForm = {
     name: "",
-    roll: "",
+    role: "",
     phoneNumber: "",
     officePhone: "",
     email: "",
@@ -26,37 +25,40 @@ function NewContactForm({
   };
   const [newContact, setNewContact] = useState(newContactResetForm);
   const [isFormOpen, toggleForm] = UseToggleState(false);
+  const [nameError, setNameError] = useState(false);
+  const [roleError, setRoleError] = useState(false);
   const [phoneNumberError, setPhoneNumberError] = useState(false);
   const [officePhoneError, setOfficePhoneError] = useState(false);
+  const [emailError, setEmailError] = useState(false);
+  const [isFormSubmitted, setIsFormSubmitted] = useState(false);
 
   const israeliPhoneNumberRegex =
     /^(?:\+972|0)(5[^7]|[2-4]|[8-9]|7[0-9])[0-9]{7}$/;
 
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      if (newContact.phoneNumber) {
-        if (!israeliPhoneNumberRegex.test(newContact.phoneNumber)) {
-          setPhoneNumberError(true);
-        } else {
-          setPhoneNumberError(false);
-        }
-      }
-    }, 1000);
-    return () => clearTimeout(timer);
-  }, [newContact.phoneNumber]);
+  const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i;
 
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      if (newContact.officePhone) {
-        if (!israeliPhoneNumberRegex.test(newContact.officePhone)) {
-          setOfficePhoneError(true);
-        } else {
-          setOfficePhoneError(false);
-        }
+  // /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+
+  const validateRequiredInput = (field, setError) => {
+    if (!field || field.trim() === "") {
+      setError(true);
+    } else {
+      setError(false);
+    }
+  };
+
+  const validateRegexInput = (field, regex, setError) => {
+    if (field && field.trim() !== "") {
+      const trimmedField = field.trim();
+      if (!regex.test(trimmedField)) {
+        setError(true);
+      } else {
+        setError(false);
       }
-    }, 1000);
-    return () => clearTimeout(timer);
-  }, [newContact.officePhone]);
+    } else {
+      setError(false);
+    }
+  };
 
   const handleChange = (e) => {
     setNewContact({ ...newContact, [e.target.name]: e.target.value });
@@ -64,9 +66,56 @@ function NewContactForm({
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
-    addContact(newContact);
-    setNewContact(newContactResetForm);
+
+    setIsFormSubmitted(true);
+
+    validateRequiredInput(newContact.name, setNameError);
+    validateRequiredInput(newContact.role, setRoleError);
+    validateRegexInput(
+      newContact.phoneNumber,
+      israeliPhoneNumberRegex,
+      setPhoneNumberError
+    );
+    validateRegexInput(
+      newContact.officePhone,
+      israeliPhoneNumberRegex,
+      setOfficePhoneError
+    );
+    validateRegexInput(newContact.email, emailRegex, setEmailError);
+
+    // if (
+    //   !nameError &&
+    //   !roleError &&
+    //   !emailError &&
+    //   !phoneNumberError &&
+    //   !officePhoneError
+    // ) {
+    //   addContact(newContact);
+    //   setNewContact(newContactResetForm);
+    // }
   };
+
+  useEffect(() => {
+    if (
+      !nameError &&
+      !roleError &&
+      !emailError &&
+      !phoneNumberError &&
+      !officePhoneError &&
+      isFormSubmitted
+    ) {
+      addContact(newContact);
+      setNewContact(newContactResetForm);
+      setIsFormSubmitted(false);
+    }
+  }, [
+    nameError,
+    roleError,
+    emailError,
+    phoneNumberError,
+    officePhoneError,
+    isFormSubmitted,
+  ]);
 
   return (
     <div className="NewContactForm">
@@ -96,30 +145,32 @@ function NewContactForm({
           <div>
             <TextField
               fullWidth
-              required
               className={classes.newContactInput}
               type="text"
               inputProps={{ maxLength: 20 }}
               id="name"
               name="name"
-              label="שם"
+              label="שם *"
               InputLabelProps={{ classes: { root: classes.newContactLabel } }}
               value={newContact.name}
               onChange={handleChange}
+              error={nameError}
+              helperText={nameError && "שדה זה לא יכול להשאר ריק"}
             ></TextField>
 
             <TextField
               fullWidth
-              required
               className={classes.newContactInput}
               type="text"
               inputProps={{ maxLength: 20 }}
-              id="roll"
-              name="roll"
-              label="תפקיד"
+              id="role"
+              name="role"
+              label="תפקיד *"
               InputLabelProps={{ classes: { root: classes.newContactLabel } }}
-              value={newContact.roll}
+              value={newContact.role}
               onChange={handleChange}
+              error={roleError}
+              helperText={roleError && "שדה זה לא יכול להשאר ריק"}
             ></TextField>
 
             <TextField
@@ -156,7 +207,7 @@ function NewContactForm({
             <TextField
               fullWidth
               className={classes.newContactInput}
-              type="email"
+              type="text"
               id="email"
               name="email"
               inputProps={{ maxLength: 25 }}
@@ -164,6 +215,8 @@ function NewContactForm({
               InputLabelProps={{ classes: { root: classes.newContactLabel } }}
               value={newContact.email}
               onChange={handleChange}
+              error={emailError}
+              helperText={emailError && "כתובת המייל אינה תקינה"}
             ></TextField>
           </div>
 

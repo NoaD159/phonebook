@@ -66,7 +66,7 @@ function ContactTable({
         color={tag.color}
         contacts={tag.contacts}
         key={tag.tagName}
-        selectedContactRef={selectedContactRef}
+        // selectedContactRef={selectedContactRef}
       />
     </div>
   ));
@@ -113,7 +113,7 @@ function ContactTable({
                   color={tag.color}
                   contacts={tag.contacts}
                   key={tag.tagName}
-                  selectedContactRef={selectedContactRef}
+                  // selectedContactRef={selectedContactRef}
                 />
               );
             }

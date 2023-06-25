@@ -20,17 +20,23 @@ const Transition = React.forwardRef((props, ref) => {
 function EdidDialog({ classes, open, close, editContact, id }) {
   const [contact, setContact] = useState({
     name: "",
-    roll: "",
+    role: "",
     officePhone: "",
     phoneNumber: "",
     email: "",
     tag: "",
   });
+
+  const [nameError, setNameError] = useState(false);
+  const [roleError, setRoleError] = useState(false);
   const [phoneNumberError, setPhoneNumberError] = useState(false);
   const [officePhoneError, setOfficePhoneError] = useState(false);
+  const [emailError, setEmailError] = useState(false);
 
   const israeliPhoneNumberRegex =
     /^(?:\+972|0)(5[^7]|[2-4]|[8-9]|7[0-9])[0-9]{7}$/;
+
+  const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i;
 
   useEffect(() => {
     async function getData() {
@@ -40,33 +46,56 @@ function EdidDialog({ classes, open, close, editContact, id }) {
       setContact(response.data);
     }
     getData();
-  }, [open]);
+  }, [open, id]);
+
+  const validateRequiredInput = (field, setError) => {
+    if (!field || field.trim() === "") {
+      setError(true);
+    } else {
+      setError(false);
+    }
+  };
+
+  const validateRegexInput = (field, regex, setError) => {
+    if (field && field.trim() !== "") {
+      const trimmedField = field.trim();
+      if (!regex.test(trimmedField)) {
+        setError(true);
+      } else {
+        setError(false);
+      }
+    } else {
+      setError(false);
+    }
+  };
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      if (contact.phoneNumber) {
-        if (!israeliPhoneNumberRegex.test(contact.phoneNumber)) {
-          setPhoneNumberError(true);
-        } else {
-          setPhoneNumberError(false);
-        }
-      }
-    }, 1000);
-    return () => clearTimeout(timer);
+    return validateRequiredInput(contact.name, setNameError);
+  }, [contact.name]);
+
+  useEffect(() => {
+    return validateRequiredInput(contact.role, setRoleError);
+  }, [contact.role]);
+
+  useEffect(() => {
+    return validateRegexInput(
+      contact.phoneNumber,
+      israeliPhoneNumberRegex,
+      setPhoneNumberError
+    );
   }, [contact.phoneNumber]);
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      if (contact.officePhone) {
-        if (!israeliPhoneNumberRegex.test(contact.officePhone)) {
-          setOfficePhoneError(true);
-        } else {
-          setOfficePhoneError(false);
-        }
-      }
-    }, 1000);
-    return () => clearTimeout(timer);
+    return validateRegexInput(
+      contact.officePhone,
+      israeliPhoneNumberRegex,
+      setOfficePhoneError
+    );
   }, [contact.officePhone]);
+
+  useEffect(() => {
+    return validateRegexInput(contact.email, emailRegex, setEmailError);
+  }, [contact.email]);
 
   const handleChange = (e) => {
     setContact({ ...contact, [e.target.name]: e.target.value });
@@ -74,8 +103,17 @@ function EdidDialog({ classes, open, close, editContact, id }) {
 
   const handleEditForm = async (e) => {
     e.preventDefault();
-    editContact(contact, id);
-    close();
+
+    if (
+      !nameError &&
+      !roleError &&
+      !emailError &&
+      !phoneNumberError &&
+      !officePhoneError
+    ) {
+      editContact(contact, id);
+      close();
+    }
   };
 
   return (
@@ -91,7 +129,6 @@ function EdidDialog({ classes, open, close, editContact, id }) {
       <form className={classes.EditContactForm} onSubmit={handleEditForm}>
         <TextField
           fullWidth
-          required
           className={classes.editContactInput}
           type="text"
           inputProps={{ maxLength: 20 }}
@@ -101,19 +138,22 @@ function EdidDialog({ classes, open, close, editContact, id }) {
           InputLabelProps={{ classes: { root: classes.editContactLabel } }}
           value={contact.name}
           onChange={handleChange}
+          error={nameError}
+          helperText={nameError && "שדה זה לא יכול להשאר ריק"}
         />
         <TextField
           fullWidth
-          required
           className={classes.editContactInput}
           type="text"
           inputProps={{ maxLength: 20 }}
-          id="roll"
-          name="roll"
+          id="role"
+          name="role"
           label="תפקיד"
           InputLabelProps={{ classes: { root: classes.editContactLabel } }}
-          value={contact.roll}
+          value={contact.role}
           onChange={handleChange}
+          error={roleError}
+          helperText={roleError && "שדה זה לא יכול להשאר ריק"}
         />
         <TextField
           fullWidth
@@ -148,7 +188,7 @@ function EdidDialog({ classes, open, close, editContact, id }) {
         <TextField
           fullWidth
           className={classes.editContactInput}
-          type="email"
+          type="text"
           inputProps={{ maxLength: 25 }}
           id="email"
           name="email"
@@ -156,6 +196,8 @@ function EdidDialog({ classes, open, close, editContact, id }) {
           InputLabelProps={{ classes: { root: classes.editContactLabel } }}
           value={contact.email}
           onChange={handleChange}
+          error={emailError}
+          helperText={emailError && "כתובת המייל אינה תקינה"}
         />
         <Select
           required

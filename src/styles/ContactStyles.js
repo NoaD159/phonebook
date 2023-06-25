@@ -16,7 +16,7 @@ const styles = {
     marginLeft: "30px",
   },
   name: { width: "70%", marginRight: "1rem" },
-  roll: {
+  role: {
     width: "65%",
     marginRight: "3rem",
     marginTop: "0",

@@ -3,7 +3,8 @@ const Contact = require("../models/ContactModel");
 const allContact = require("./initialContact");
 require("dotenv").config({ path: "../config.env" });
 
-const uri = process.env.ATLAS_URI;
+const uri = process.env.MONGODB_URI;
+
 mongoose.set("strictQuery", true);
 mongoose.connect(uri, {
   useNewUrlParser: true,
@@ -21,7 +22,7 @@ const seedDB = async () => {
   for (let i = 0; i < allContact.length; i++) {
     const newContact = new Contact({
       name: allContact[i].name,
-      roll: allContact[i].roll,
+      role: allContact[i].role,
       email: allContact[i].email,
       tag: allContact[i].tag,
       phoneNumber: allContact[i].phoneNumber,

@@ -12,9 +12,6 @@ const styles = {
     lineHeight: "24px",
     padding: "10px",
     textAlign: "center",
-    // display: "inline-block",
-    // justifyContent: "center",
-    // alignItems: "center",
     width: "350px",
     background: "#e2d1ec",
     cursor: "pointer",
@@ -25,14 +22,15 @@ const styles = {
   },
   autocomplete: {
     borderRadius: "15px",
-    margin: "1rem",
+    margin: "0.5rem",
     width: "350px",
   },
   searchTextField: {
-    borderRadius: "15px",
+    // borderRadius: "15px",
   },
   searchContactLabel: {
-    // right: "0",
+    shrink: "false !important",
   },
 };
+
 export default styles;

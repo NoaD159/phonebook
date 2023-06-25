@@ -1,6 +1,6 @@
 module.exports = [
   {
-    roll: "טיפול במפגעים",
+    role: "טיפול במפגעים",
     name: "מוקד עירוני",
     tag: "city",
     phoneNumber: "",
@@ -8,7 +8,7 @@ module.exports = [
     officePhone: "035011111",
   },
   {
-    roll: "ממונה בטיחות",
+    role: "ממונה בטיחות",
     name: "נורית ביבי",
     tag: "city",
     phoneNumber: "0508375035",
@@ -16,7 +16,7 @@ module.exports = [
     officePhone: "035086100",
   },
   {
-    roll: "מנהלת המחלקה לטיפול בפרט",
+    role: "מנהלת המחלקה לטיפול בפרט",
     name: "רותי יצקן",
     tag: "city",
     phoneNumber: "0523287544",
@@ -24,7 +24,7 @@ module.exports = [
     officePhone: "035027298",
   },
   {
-    roll: " מפקחת החינוך המיוחד",
+    role: " מפקחת החינוך המיוחד",
     name: "אולגה פישר",
     tag: "matya",
     phoneNumber: "",
@@ -32,7 +32,7 @@ module.exports = [
     officePhone: "",
   },
   {
-    roll: "רכזת הגיל הרך",
+    role: "רכזת הגיל הרך",
     name: "גילה שוורץ",
     tag: "matya",
     phoneNumber: "0507773734",
@@ -40,7 +40,7 @@ module.exports = [
     officePhone: "",
   },
   {
-    roll: 'מנהלת מתי"א חולון-אזור ',
+    role: 'מנהלת מתי"א חולון-אזור ',
     name: "עידית רמז",
     tag: "matya",
     phoneNumber: "",
@@ -48,7 +48,7 @@ module.exports = [
     officePhone: "036541373",
   },
   {
-    roll: "רכזת מקצועות הבריאות",
+    role: "רכזת מקצועות הבריאות",
     name: "איילה גולדמן",
     tag: "matya",
     phoneNumber: "0522595232 ",
@@ -56,15 +56,15 @@ module.exports = [
     officePhone: "035598812",
   },
   {
-    roll: 'יועצת גני חנ"מ',
+    role: 'יועצת גני חנ"מ',
     name: "גל שלמה",
     tag: "matya",
-    phoneNumber: "050-6509050",
+    phoneNumber: "0506509050",
     email: "galsh75@gmail.com",
     officePhone: "",
   },
   {
-    roll: "מנהלת מחלקת גני ילדים",
+    role: "מנהלת מחלקת גני ילדים",
     name: "גילה יצחקי",
     tag: "city",
     phoneNumber: "0522595232 ",
@@ -72,7 +72,7 @@ module.exports = [
     officePhone: "035027393",
   },
   {
-    roll: "תחזוקה וגינון",
+    role: "תחזוקה וגינון",
     name: "חברת זוהר",
     tag: "city",
     phoneNumber: " ",
@@ -80,7 +80,7 @@ module.exports = [
     officePhone: "039213333",
   },
   {
-    roll: 'מנכ"ל חברת זוהר',
+    role: 'מנכ"ל חברת זוהר',
     name: "יורם אורן",
     tag: "city",
     phoneNumber: "0544598202",
@@ -88,7 +88,7 @@ module.exports = [
     officePhone: "",
   },
   {
-    roll: "הנהלה",
+    role: "הנהלה",
     name: "חברת מוסדות",
     tag: "city",
     phoneNumber: "",
@@ -96,7 +96,7 @@ module.exports = [
     officePhone: "035012628",
   },
   {
-    roll: "אחראית סייעות טכניות",
+    role: "אחראית סייעות טכניות",
     name: "אורנה בן אבו",
     tag: "city",
     phoneNumber: "0528457208",
@@ -104,7 +104,7 @@ module.exports = [
     officePhone: "035013815",
   },
   {
-    roll: "אחראית סייעות פדגוגיות",
+    role: "אחראית סייעות פדגוגיות",
     name: "ענת סידי",
     tag: "city",
     phoneNumber: "0547376355 ",
@@ -112,7 +112,7 @@ module.exports = [
     officePhone: "036506470",
   },
   {
-    roll: "אחראית מחשבים",
+    role: "אחראית מחשבים",
     name: "אהובה מימון",
     tag: "city",
     phoneNumber: "",
@@ -120,7 +120,7 @@ module.exports = [
     officePhone: "035027231",
   },
   {
-    roll: "אחראית מלווים בהסעות ",
+    role: "אחראית מלווים בהסעות ",
     name: "נאוה",
     tag: "city",
     phoneNumber: "0525775512",
@@ -128,7 +128,7 @@ module.exports = [
     officePhone: "036223835",
   },
   {
-    roll: 'טלר כ"א משרד החינוך',
+    role: 'טלר כ"א משרד החינוך',
     name: "מיכל הוכמן",
     tag: "other",
     phoneNumber: "",
@@ -136,7 +136,7 @@ module.exports = [
     officePhone: "036896330",
   },
   {
-    roll: "פעילויות העשרה",
+    role: "פעילויות העשרה",
     name: "סל תרבות",
     tag: "city",
     phoneNumber: "",
@@ -144,7 +144,7 @@ module.exports = [
     officePhone: "035027382 ",
   },
   {
-    roll: "שוברי סל תרבות",
+    role: "שוברי סל תרבות",
     name: 'מתנ"ס גולדה',
     tag: "city",
     phoneNumber: "",
@@ -152,7 +152,7 @@ module.exports = [
     officePhone: "035041414 ",
   },
   {
-    roll: "מחלקת רכש וציוד",
+    role: "מחלקת רכש וציוד",
     name: "מיטל מיד",
     tag: "city",
     phoneNumber: "",
@@ -160,7 +160,7 @@ module.exports = [
     officePhone: "035027372",
   },
   {
-    roll: "מחלקת אינוונטר",
+    role: "מחלקת אינוונטר",
     name: "סימה",
     tag: "city",
     phoneNumber: "036536005",
@@ -168,7 +168,7 @@ module.exports = [
     officePhone: "036536001",
   },
   {
-    roll: "מדריכה",
+    role: "מדריכה",
     name: "הילה חזן",
     tag: "matya",
     phoneNumber: "0543033616",
@@ -176,7 +176,7 @@ module.exports = [
     officePhone: "",
   },
   {
-    roll: "מדריכה",
+    role: "מדריכה",
     name: "אתי זוהר",
     tag: "matya",
     phoneNumber: "0502303055",
@@ -184,7 +184,7 @@ module.exports = [
     officePhone: "",
   },
   {
-    roll: "אחראית כספים",
+    role: "אחראית כספים",
     name: "סהר חיון",
     tag: "city",
     phoneNumber: "",
@@ -192,7 +192,7 @@ module.exports = [
     officePhone: "035027344",
   },
   {
-    roll: "מנהלת גן אדמון",
+    role: "מנהלת גן אדמון",
     name: "מיטל משאלי",
     tag: "kinder",
     phoneNumber: "0545902982",
@@ -200,7 +200,7 @@ module.exports = [
     officePhone: "",
   },
   {
-    roll: "עמיתה גן דרורים",
+    role: "עמיתה גן דרורים",
     name: "לילך דוידוביץ",
     tag: "kinder",
     phoneNumber: "0523590588",
@@ -208,7 +208,7 @@ module.exports = [
     officePhone: "",
   },
   {
-    roll: "מנהלת מחלקת היסעים",
+    role: "מנהלת מחלקת היסעים",
     name: "שירלי שרף",
     tag: "city",
     phoneNumber: "0545590045",
