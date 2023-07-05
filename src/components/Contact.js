@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import UseToggleState from "../hooks/UseToggleState";
 import {
   ListItemSecondaryAction,
@@ -30,11 +30,14 @@ const Contact = function (props) {
     removeContact,
     editContact,
     _id,
+    selectedContactId,
   } = props;
   const [isDeleteDialogOpen, setDeleteDialog] = useState(false);
   const [isEditDialogOpen, setEditDialog] = useState(false);
   const [ShowEmail, setShowEmail] = UseToggleState(false);
   const [anchorEl, setAnchorEl] = useState(null);
+
+  const contactRef = useRef(null);
 
   function handleClick(e) {
     setShowEmail();
@@ -58,12 +61,22 @@ const Contact = function (props) {
     setEditDialog(false);
   };
 
+  useEffect(() => {
+    if (selectedContactId === _id && contactRef.current) {
+      contactRef.current.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    }
+  }, [selectedContactId, _id]);
+
   return (
     <>
       <ListItem
         style={{ backgroundColor: `#${color}` }}
         className={classes.Contact}
         data-contact-id={_id}
+        ref={contactRef}
       >
         <ListItemText
           primaryTypographyProps={{ classes: { root: classes.contactNames } }}

@@ -9,7 +9,7 @@ function ContactTable({
   contacts,
   removeContact,
   editContact,
-  selectedContactRef,
+  selectedContactId,
 }) {
   const [filterByTag, setFilterByTag] = useState("all");
 
@@ -66,6 +66,7 @@ function ContactTable({
         color={tag.color}
         contacts={tag.contacts}
         key={tag.tagName}
+        selectedContactId={selectedContactId}
         // selectedContactRef={selectedContactRef}
       />
     </div>
@@ -113,6 +114,7 @@ function ContactTable({
                   color={tag.color}
                   contacts={tag.contacts}
                   key={tag.tagName}
+                  selectedContactId={selectedContactId}
                   // selectedContactRef={selectedContactRef}
                 />
               );

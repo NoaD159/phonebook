@@ -24,6 +24,7 @@ function ContactApp() {
   const [isLoading, setIsLoading] = useState(false);
   const [snackbarOpen, setSnackbarOpen] = useToggle(false);
   const [snackbarError, setSnackbarError] = useState("");
+  const [selectedContactId, setSelectedContactId] = useState(null);
 
   const getData = async () => {
     try {
@@ -41,6 +42,10 @@ function ContactApp() {
   useEffect(() => {
     getData();
   }, []);
+
+  const handleSelectedContact = (contactId) => {
+    setSelectedContactId(contactId);
+  };
 
   const addContact = async (newContact) => {
     try {
@@ -93,13 +98,14 @@ function ContactApp() {
         snackbarError={snackbarError}
       />
       <SearchContact
-        // selectedContactRef={selectedContactRef}
+        handleSelectedContact={handleSelectedContact}
         contacts={contacts}
       />
       <ContactTable
         contacts={contacts}
         removeContact={removeContact}
         editContact={editContact}
+        selectedContactId={selectedContactId}
       />
     </div>
   );

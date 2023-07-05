@@ -37,8 +37,6 @@ function NewContactForm({
 
   const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i;
 
-  // /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
-
   const validateRequiredInput = (field, setError) => {
     if (!field || field.trim() === "") {
       setError(true);
@@ -82,17 +80,6 @@ function NewContactForm({
       setOfficePhoneError
     );
     validateRegexInput(newContact.email, emailRegex, setEmailError);
-
-    // if (
-    //   !nameError &&
-    //   !roleError &&
-    //   !emailError &&
-    //   !phoneNumberError &&
-    //   !officePhoneError
-    // ) {
-    //   addContact(newContact);
-    //   setNewContact(newContactResetForm);
-    // }
   };
 
   useEffect(() => {
@@ -147,7 +134,7 @@ function NewContactForm({
               fullWidth
               className={classes.newContactInput}
               type="text"
-              inputProps={{ maxLength: 20 }}
+              inputProps={{ maxLength: 30 }}
               id="name"
               name="name"
               label="שם *"
@@ -162,7 +149,7 @@ function NewContactForm({
               fullWidth
               className={classes.newContactInput}
               type="text"
-              inputProps={{ maxLength: 20 }}
+              inputProps={{ maxLength: 30 }}
               id="role"
               name="role"
               label="תפקיד *"
@@ -210,7 +197,7 @@ function NewContactForm({
               type="text"
               id="email"
               name="email"
-              inputProps={{ maxLength: 25 }}
+              inputProps={{ maxLength: 30 }}
               label="כתובת מייל"
               InputLabelProps={{ classes: { root: classes.newContactLabel } }}
               value={newContact.email}
