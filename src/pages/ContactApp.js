@@ -17,9 +17,16 @@ const styles = {
       transition: "opacity 500ms ease-out",
     },
   },
+  ContactApp: {
+    scrollBehavior: "smooth",
+  },
+  scrollableContainer: {
+    height: "100vh",
+    overflow: "scroll",
+  },
 };
 
-function ContactApp() {
+function ContactApp({ classes }) {
   const [contacts, setContacts] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [snackbarOpen, setSnackbarOpen] = useToggle(false);
@@ -76,7 +83,7 @@ function ContactApp() {
   };
 
   return (
-    <div className="ContactApp">
+    <div className={`${classes.ContactApp} ${classes.scrollableContainer}`}>
       <h1>אנשי קשר- חולון</h1>
       {isLoading && <LoadingSpinner />}
 
