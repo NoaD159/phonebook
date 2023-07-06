@@ -17,20 +17,14 @@ const styles = {
       transition: "opacity 500ms ease-out",
     },
   },
-  ContactApp: {
-    scrollBehavior: "smooth",
-  },
-  scrollableContainer: {
-    height: "100vh",
-    overflow: "scroll",
-  },
 };
 
-function ContactApp({ classes }) {
+function ContactApp() {
   const [contacts, setContacts] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [snackbarOpen, setSnackbarOpen] = useToggle(false);
   const [snackbarError, setSnackbarError] = useState("");
+  const [selectedContactId, setSelectedContactId] = useState(null);
 
   const getData = async () => {
     try {
@@ -48,6 +42,23 @@ function ContactApp({ classes }) {
   useEffect(() => {
     getData();
   }, []);
+
+  // const handleSelectedContact = (contactId) => {
+  //   setSelectedContactId(contactId);
+  // };
+
+  useEffect(() => {
+    const selectedContact = contacts.find(
+      (contact) => contact._id === selectedContactId
+    );
+    if (selectedContact) {
+      // Scroll to the selected contact using the window.scrollTo method
+      const elementToScroll = document.getElementById(selectedContact._id);
+      if (elementToScroll) {
+        elementToScroll.scrollIntoView({ behavior: "smooth" });
+      }
+    }
+  }, [selectedContactId, contacts]);
 
   const addContact = async (newContact) => {
     try {
@@ -83,7 +94,7 @@ function ContactApp({ classes }) {
   };
 
   return (
-    <div className={`${classes.ContactApp} ${classes.scrollableContainer}`}>
+    <div className="ContactApp">
       <h1>אנשי קשר- חולון</h1>
       {isLoading && <LoadingSpinner />}
 
@@ -102,11 +113,14 @@ function ContactApp({ classes }) {
       <SearchContact
         // selectedContactRef={selectedContactRef}
         contacts={contacts}
+        setSelectedContactId={setSelectedContactId}
+        selectedContactId={selectedContactId}
       />
       <ContactTable
         contacts={contacts}
         removeContact={removeContact}
         editContact={editContact}
+        selectedContactId={selectedContactId}
       />
     </div>
   );

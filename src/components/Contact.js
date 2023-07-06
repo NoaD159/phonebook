@@ -30,6 +30,7 @@ const Contact = function (props) {
     removeContact,
     editContact,
     _id,
+    selectedContactId,
   } = props;
   const [isDeleteDialogOpen, setDeleteDialog] = useState(false);
   const [isEditDialogOpen, setEditDialog] = useState(false);
@@ -61,8 +62,11 @@ const Contact = function (props) {
   return (
     <>
       <ListItem
+        id={_id}
         style={{ backgroundColor: `#${color}` }}
-        className={classes.Contact}
+        className={`${classes.Contact} ${
+          selectedContactId ? classes.selected : ""
+        }`}
         data-contact-id={_id}
       >
         <ListItemText
