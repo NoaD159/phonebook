@@ -43,9 +43,22 @@ function ContactApp() {
     getData();
   }, []);
 
-  const handleSelectedContact = (contactId) => {
-    setSelectedContactId(contactId);
-  };
+  // const handleSelectedContact = (contactId) => {
+  //   setSelectedContactId(contactId);
+  // };
+
+  useEffect(() => {
+    const selectedContact = contacts.find(
+      (contact) => contact._id === selectedContactId
+    );
+    if (selectedContact) {
+      // Scroll to the selected contact using the window.scrollTo method
+      const elementToScroll = document.getElementById(selectedContact._id);
+      if (elementToScroll) {
+        elementToScroll.scrollIntoView({ behavior: "smooth" });
+      }
+    }
+  }, [selectedContactId, contacts]);
 
   const addContact = async (newContact) => {
     try {
@@ -100,6 +113,8 @@ function ContactApp() {
       <SearchContact
         handleSelectedContact={handleSelectedContact}
         contacts={contacts}
+        setSelectedContactId={setSelectedContactId}
+        selectedContactId={selectedContactId}
       />
       <ContactTable
         contacts={contacts}

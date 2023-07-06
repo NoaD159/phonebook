@@ -67,7 +67,6 @@ function ContactTable({
         contacts={tag.contacts}
         key={tag.tagName}
         selectedContactId={selectedContactId}
-        // selectedContactRef={selectedContactRef}
       />
     </div>
   ));
@@ -115,7 +114,6 @@ function ContactTable({
                   contacts={tag.contacts}
                   key={tag.tagName}
                   selectedContactId={selectedContactId}
-                  // selectedContactRef={selectedContactRef}
                 />
               );
             }

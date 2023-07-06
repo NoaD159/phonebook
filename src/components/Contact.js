@@ -73,8 +73,11 @@ const Contact = function (props) {
   return (
     <>
       <ListItem
+        id={_id}
         style={{ backgroundColor: `#${color}` }}
-        className={classes.Contact}
+        className={`${classes.Contact} ${
+          selectedContactId ? classes.selected : ""
+        }`}
         data-contact-id={_id}
         ref={contactRef}
       >
