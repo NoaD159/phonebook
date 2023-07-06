@@ -36,7 +36,7 @@ function SearchContact({ classes, contacts, setSelectedContactId }) {
         <Autocomplete
           className={classes.autocomplete}
           options={options}
-          onChange={handleAutocompleteChange}
+          onChange={handleSelectedContact}
           renderInput={(params) => (
             <TextField
               className={classes.searchTextField}

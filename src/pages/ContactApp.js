@@ -111,10 +111,8 @@ function ContactApp() {
         snackbarError={snackbarError}
       />
       <SearchContact
-        handleSelectedContact={handleSelectedContact}
         contacts={contacts}
         setSelectedContactId={setSelectedContactId}
-        selectedContactId={selectedContactId}
       />
       <ContactTable
         contacts={contacts}
