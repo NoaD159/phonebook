@@ -47,15 +47,24 @@
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
-    <!--
-      This HTML file is a template.
-      If you open it directly in the browser, you will see an empty page.
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.8/clipboard.min.js"></script>
+    <script type="text/javascript">
+      document.addEventListener("DOMContentLoaded", function () {
+        const codeBlocks = document.querySelectorAll("code[id]");
+        codeBlocks.forEach((codeBlock) => {
+          const btn = document.createElement("button");
+          btn.className = "copy-button";
+          btn.textContent = "Copy";
+          btn.setAttribute("data-clipboard-target", "#" + codeBlock.id);
+          codeBlock.parentNode.insertBefore(btn, codeBlock.nextSibling);
+        });
 
-      You can add webfonts, meta tags, or analytics to this file.
-      The build step will place the bundled scripts into the <body> tag.
-
-      To begin the development, run `npm start` or `yarn start`.
-      To create a production bundle, use `npm run build` or `yarn build`.
-    -->
+        new ClipboardJS(".copy-button", {
+          target: function (trigger) {
+            return trigger.getAttribute("data-clipboard-target");
+          },
+        });
+      });
+    </script>
   </body>
 </html>
