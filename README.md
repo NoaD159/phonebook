@@ -4,8 +4,8 @@
 
 The Phonebook App is a simple web application for kindergarteners that enables users to manage a list of contacts. It provides features for adding new contacts, searching for contacts, and performing basic CRUD operations (Create, Read, Update, Delete).
 
-<!-- ![App Screenshot](/path/to/screenshot.png)
-*Screenshot of the Phonebook App.* -->
+![App Screenshot](/media/screenshot.png)
+_Screenshot of the Phonebook App._
 
 ## Table of Contents
 
@@ -60,6 +60,9 @@ npm start
 ```
 
 Once the app is running, open your web browser and go to http://localhost:3000 to access the Phonebook App.
+
+**Live Demo:**
+[Phonebook App on Vercel](https://phonebook-holon.vercel.app/) (Password required)
 
 ## Technologies Used
 
