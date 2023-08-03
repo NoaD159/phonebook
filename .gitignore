@@ -2,13 +2,13 @@
 
 # dependencies
 /node_modules
-/api/node_modules
+api/node_modules
 /.pnp
 .pnp.js
 
 # testing
 /coverage
-/api/seeds/initialContacts.js
+api/seeds/initialContacts.js
 
 # production
 /build
