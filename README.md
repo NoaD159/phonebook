@@ -79,28 +79,32 @@ Contributions to this project are welcome! If you find any issues or have sugges
 
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-   <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.8/clipboard.min.js"></script>
-  </head>
-  <body>
-    <script type="text/javascript">
-       document.addEventListener("DOMContentLoaded", function () {
-        const codeBlocks = document.querySelectorAll("code[id]");
-        codeBlocks.forEach((codeBlock) => {
-          const btn = document.createElement("button");
-          btn.className = "copy-button";
-          btn.textContent = "Copy";
-          btn.setAttribute("data-clipboard-target", "#" + codeBlock.id);
-          codeBlock.parentNode.insertBefore(btn, codeBlock.nextSibling);
-        });
-
-        new ClipboardJS(".copy-button", {
-          target: function (trigger) {
-            return trigger.getAttribute("data-clipboard-target");
-          },
-        });
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Phonebook App</title>
+  <link rel="stylesheet" href="path/to/your/styles.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.8/clipboard.min.js"></script>
+  <script type="text/javascript">
+    document.addEventListener("DOMContentLoaded", function () {
+      const codeBlocks = document.querySelectorAll("code[id]");
+      codeBlocks.forEach((codeBlock) => {
+        const btn = document.createElement("button");
+        btn.className = "copy-button";
+        btn.textContent = "Copy";
+        btn.setAttribute("data-clipboard-target", "#" + codeBlock.id);
+        codeBlock.parentNode.insertBefore(btn, codeBlock.nextSibling);
       });
-    </script>
 
-  </body>
+      new ClipboardJS(".copy-button", {
+        target: function (trigger) {
+          return trigger.getAttribute("data-clipboard-target");
+        },
+      });
+
+  </script>
+</head>
+<body>
+  <!-- Your app content goes here -->
+</body>
 </html>
