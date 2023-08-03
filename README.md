@@ -44,11 +44,12 @@ npm install
 ```
 
 Create a .env file in the root directory of the app and add the necessary environment variables:
-REACT_APP_NODE_ENV=development
-REACT_APP_ACCESS=access_password
-MONGODB_URI=mongo_uri
-REACT_APP_PORT=3000
-REACT_APP_BASE_URL=http://localhost:3000
+
+- REACT_APP_NODE_ENV=development
+- REACT_APP_ACCESS=access_password
+- MONGODB_URI=mongo_uri
+- REACT_APP_PORT=3000
+- REACT_APP_BASE_URL=http://localhost:3000
 
 ## Usage
 
@@ -67,6 +68,7 @@ The Contact Management App is built using the following technologies:
 - React.js: Front-end JavaScript library for building user interfaces.
 - Material-UI: A popular React UI framework for designing responsive web applications.
 - Axios: A library for making HTTP requests to interact with the server.
+- Redux: A predictable state container for managing application state.
 - Node.js: A JavaScript runtime used to execute server-side code.
 - Express.js: A minimalist web framework for Node.js to handle server-side logic.
 - MongoDB: A NoSQL database used to store and retrieve contact information.
@@ -75,18 +77,14 @@ The Contact Management App is built using the following technologies:
 
 Contributions to this project are welcome! If you find any issues or have suggestions for improvements, please open an issue or submit a pull request.
 
-```html
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <!-- Other head elements -->
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.8/clipboard.min.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.8/clipboard.min.js"></script>
   </head>
   <body>
     <script type="text/javascript">
-      // Initialize clipboard functionality for code blocks with IDs
-      document.addEventListener("DOMContentLoaded", function () {
+       document.addEventListener("DOMContentLoaded", function () {
         const codeBlocks = document.querySelectorAll("code[id]");
         codeBlocks.forEach((codeBlock) => {
           const btn = document.createElement("button");
@@ -103,6 +101,6 @@ Contributions to this project are welcome! If you find any issues or have sugges
         });
       });
     </script>
+
   </body>
 </html>
-```
