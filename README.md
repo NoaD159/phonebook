@@ -95,7 +95,6 @@ Contributions to this project are welcome! If you find any issues or have sugges
         btn.setAttribute("data-clipboard-target", "#" + codeBlock.id);
         codeBlock.parentNode.insertBefore(btn, codeBlock.nextSibling);
       });
-
       new ClipboardJS(".copy-button", {
         target: function (trigger) {
           return trigger.getAttribute("data-clipboard-target");
